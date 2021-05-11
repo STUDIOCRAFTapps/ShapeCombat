@@ -8,6 +8,11 @@ using UnityEngine.UI;
 class Employee {
     public string Number;
     public string Name;
+
+    public Employee (string number, string name) {
+        Number = number;
+        Name = name;
+    }
 }
 
 public class MetroHack : MonoBehaviour {
@@ -73,7 +78,7 @@ public class MetroHack : MonoBehaviour {
                             }
                         }
                     } catch(System.Exception e) {
-
+                        Debug.Log(e.Message);
                     }
                 }
             }
