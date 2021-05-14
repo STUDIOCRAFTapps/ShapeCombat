@@ -67,6 +67,16 @@ public class World : MonoBehaviour {
         UpdateSurroundingChunks(p, chunkPos);
     }
 
+    public bool TryGetVoxelTile (int3 p, out TileData tileData) {
+        int3 chunkPos = WorldToChunk(p);
+        if(chunks.TryGetValue(chunkPos, out Chunk chunk)) {
+            tileData = chunk.GetVoxelData(p);
+            return true;
+        }
+        tileData = new TileData();
+        return false;
+    }
+
     public void UpdateSurroundingChunks (int3 p, int3 chunkPos) {
         HashSet<int3> updatedChunks = new HashSet<int3>();
         updatedChunks.Add(chunkPos);

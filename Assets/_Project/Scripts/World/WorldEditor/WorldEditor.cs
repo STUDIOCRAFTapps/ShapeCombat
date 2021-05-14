@@ -10,6 +10,7 @@ public class WorldEditor : MonoBehaviour {
     public Transform grid;
     public Transform[] cursors;
     public Transform dragCursor;
+    public EditorInventory editorInventory;
 
     [Header("Parameters")]
     public float defaultDistance = 4f;
@@ -23,12 +24,13 @@ public class WorldEditor : MonoBehaviour {
     private bool isDragging;
     private bool isPlaneDraggingMode;
     private bool dragCancelled = false;
-    
+    private Vector3Int dragEndDelta;
+    private float3 previousCameraAxis;
     private Vector3Int cursorPosAtDragStart;
     private byte initialRotCode;
-
     private byte currentRotCode = 0;
 
+    public TilePrefab selectedTilePrefab;
 
     private Camera cam;
     private void Start () {
@@ -39,6 +41,28 @@ public class WorldEditor : MonoBehaviour {
 
         // Position and rotate grid acording to editor movement
         PrepareGrid();
+
+        bool isCursorOverTilePrefab = IsCursorOverTilePrefab(out TilePrefab tilePrefab);
+        if((selectedTilePrefab || isCursorOverTilePrefab) && !isDragging) {
+            HideAllCursors();
+
+            if(selectedTilePrefab == null) {
+                WrapCursorOverTilePrefab(tilePrefab);
+
+                if(Input.GetMouseButtonUp(0)) {
+                    selectedTilePrefab = tilePrefab;
+                }
+                return;
+            }
+            WrapCursorOverTilePrefab(selectedTilePrefab);
+
+            if(Input.GetKeyUp(KeyCode.Space)) {
+                selectedTilePrefab = null;
+            }
+
+            return;
+        }
+        
 
         #region Mode/Model Selection
 
@@ -74,7 +98,26 @@ public class WorldEditor : MonoBehaviour {
         // Position and rotate cursor
         PrepareCursor(showCursor, cursorPos, cursorRot);
         #endregion
-        
+
+        #region Copy Material
+        if(Input.GetMouseButtonDown(2)) {
+            bool copyMatCursor = GetCursorPos(
+                insetRaycast: true,
+                out Vector3Int copyMatCursorPos,
+                out Vector3 cpIn,
+                out Vector3 cpNor);
+
+            if(copyMatCursor) {
+                if(World.inst.TryGetVoxelTile(new int3(copyMatCursorPos.x, copyMatCursorPos.y, copyMatCursorPos.z), out TileData tileData)) {
+                    if(tileData.assetId != ushort.MaxValue) {
+                        editorInventory.SetSelectionOn(tileData.assetId);
+                        selectedTileAsset = tileData.assetId;
+                    }
+                }
+            }
+        }
+        #endregion
+
         if(Input.GetKeyDown(KeyCode.Space)) {
             dragCancelled = true;
             isDragging = false;
@@ -83,8 +126,16 @@ public class WorldEditor : MonoBehaviour {
             cursorPosAtDragStart = cursorPos;
             initialRotCode = currentRotCode;
         }
-        if(Input.GetMouseButton(0) & cursorPosAtDragStart != cursorPos && !isDragging && showCursor && !dragCancelled) {
+        if(Input.GetMouseButton(0) & (cursorPosAtDragStart != cursorPos || !showCursor) && !isDragging && showCursor && !dragCancelled) {
             isDragging = true;
+        }
+        if(isPlaneDraggingMode && isDragging) {
+            if(math.any(previousCameraAxis != GetTrueCameraAxis())) {
+                previousCameraAxis = GetTrueCameraAxis();
+                dragEndDelta = Vector3Int.zero;
+            }
+            dragEndDelta += Vector3Int.RoundToInt(previousCameraAxis * Input.mouseScrollDelta.y);
+            cursorPos += dragEndDelta;
         }
         Vector3Int rectMin = new Vector3Int(Mathf.Min(cursorPosAtDragStart.x, cursorPos.x), Mathf.Min(cursorPosAtDragStart.y, cursorPos.y), Mathf.Min(cursorPosAtDragStart.z, cursorPos.z));
         Vector3Int rectMax = new Vector3Int(Mathf.Max(cursorPosAtDragStart.x, cursorPos.x), Mathf.Max(cursorPosAtDragStart.y, cursorPos.y), Mathf.Max(cursorPosAtDragStart.z, cursorPos.z));
@@ -93,6 +144,7 @@ public class WorldEditor : MonoBehaviour {
             dragCursor.localScale = rectMax - rectMin + Vector3Int.one;
             dragCursor.eulerAngles = Vector3.zero;
         }
+        
 
         if(Input.GetMouseButtonUp(0) && dragCancelled) {
             dragCancelled = false;
@@ -266,6 +318,43 @@ public class WorldEditor : MonoBehaviour {
     }
 
 
+    // Wraps cursor over given tile prefab
+    public void WrapCursorOverTilePrefab (TilePrefab tilePrefab) {
+        Transform tPtr = tilePrefab.transform;
+        BoxCollider tPCol = tilePrefab.GetComponent<BoxCollider>();
+
+        dragCursor.position = tPtr.position + tPCol.center - tPCol.size * 0.5f;
+        dragCursor.localScale = tPCol.size;
+        dragCursor.eulerAngles = tPtr.eulerAngles;
+    }
+
+
+    // Hides all cursors
+    public void HideAllCursors () {
+
+        // Only show selected cursor, if not dragging
+        for(int i = 0; i < cursors.Length; i++) {
+            if(cursors[i].gameObject.activeSelf != false) {
+                cursors[i].gameObject.SetActive(false);
+            }
+        }
+
+        // Set dragging cursor active if dragging only
+        if(dragCursor.gameObject.activeSelf != true) {
+            dragCursor.gameObject.SetActive(true);
+        }
+        
+        // Scale dragging cursor while taking into account the different point's position
+        foreach(LineRenderer line in dragCursor.GetComponentsInChildren(typeof(LineRenderer))) {
+            float startDistance = Vector3.Distance(cam.transform.position, Vector3.Scale(line.GetPosition(0), dragCursor.localScale) + dragCursor.position) * lineWidth;
+            float endDistance = Vector3.Distance(cam.transform.position, Vector3.Scale(line.GetPosition(line.positionCount - 1), dragCursor.localScale) + dragCursor.position) * lineWidth;
+            line.startWidth = startDistance;
+            line.endWidth = endDistance;
+            line.widthMultiplier = 1f;
+        }
+    }
+
+
     // Figure out cursor rotation
     public Vector3 GetCursorRot (bool useAltSelect, Vector3 inCellPos, Vector3 normal) {
         Vector3 rotationEuler = Vector3.zero;
@@ -399,6 +488,46 @@ public class WorldEditor : MonoBehaviour {
             return transform.forward.y > 0 ? 1 : 4;
         } else {
             return transform.forward.z > 0 ? 2 : 5;
+        }
+    }
+
+
+    // Check if cursor is over tile prefab
+    public bool IsCursorOverTilePrefab (out TilePrefab tilePrefab) {
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        if(Physics.Raycast(ray, out RaycastHit hit) && !isDragging) {
+            
+            if(hit.collider.tag == "TilePrefab") {
+                tilePrefab = hit.collider.GetComponent<TilePrefab>();
+                return true;
+            } else {
+                tilePrefab = null;
+                return false;
+            }
+        }
+        tilePrefab = null;
+        return false;
+    }
+
+    // Get Camera Axis
+    float3 GetTrueCameraAxis () {
+        if(math.abs(transform.forward.x) >= math.abs(transform.forward.y) && math.abs(transform.forward.x) >= math.abs(transform.forward.z)) {
+            return transform.forward.x > 0 ? new float3(1, 0, 0) : new float3(-1, 0, 0);
+        } else if(math.abs(transform.forward.y) >= math.abs(transform.forward.z)) {
+            return transform.forward.y > 0 ? new float3(0, 1, 0) : new float3(0, -1, 0);
+        } else {
+            return transform.forward.z > 0 ? new float3(0, 0, 1) : new float3(0, 0, -1);
+        }
+    }
+
+    // Get Camera Axis
+    float3 GetPlaneCameraAxis () {
+        if(math.abs(transform.forward.x) >= math.abs(transform.forward.y) && math.abs(transform.forward.x) >= math.abs(transform.forward.z)) {
+            return transform.forward.x > 0 ? new float3(1, 0, 0) : new float3(-1, 0, 0);
+        } else if(math.abs(transform.forward.y) >= math.abs(transform.forward.z)) {
+            return transform.forward.y > 0 ? new float3(0, 1, 0) : new float3(0, -1, 0);
+        } else {
+            return transform.forward.z > 0 ? new float3(0, 0, 1) : new float3(0, 0, -1);
         }
     }
 

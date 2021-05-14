@@ -174,13 +174,11 @@ public class ChunkData : System.IDisposable {
 
 
     public bool IsEmpty () {
-        bool isEmpty = true;
         for(int i = 0; i < (World.inst.chunkSize * World.inst.chunkSize * World.inst.chunkSize); i++) {
-            if(tilePrefabsData[i].assetId != ushort.MaxValue)
-                isEmpty = false;
+            if(tilesData[i].assetId != ushort.MaxValue)
+                return false;
         }
-
-        return isEmpty;
+        return true;
     }
 
     public int EstimateVertsCount () {

@@ -30,12 +30,12 @@ public class EditorInventory : MonoBehaviour {
         SetSelectionOn(0);
     }
 
-    private void SetSelectionOn (int i) {
+    public void SetSelectionOn (int i) {
         selectionIndicator.position = tiles[i].position - new Vector3(2f, -2f);
     }
 
     private void Update () {
-        if(!Input.GetKey(KeyCode.V)) {
+        if(!Input.GetKey(KeyCode.V) && !Input.GetKey(KeyCode.Tab)) {
             if(Input.mouseScrollDelta.y != 0f) {
                 worldEditor.selectedTileAsset = Mathf.RoundToInt(Mathf.Repeat(worldEditor.selectedTileAsset + Input.mouseScrollDelta.y, World.inst.tileCollection.tileAssets.Length));
                 SetSelectionOn(worldEditor.selectedTileAsset);

@@ -47,9 +47,20 @@ public class WorldSerializer : MonoBehaviour {
 
         using(FileStream fs = new FileStream(worldFilePath, FileMode.Create))
         using(BinaryWriter writer = new BinaryWriter(fs)) {
-            writer.Write(World.inst.chunks.Count);
+            int chunkCount = 0;
+            foreach(KeyValuePair<int3, Chunk> kvp in World.inst.chunks) {
+                Debug.Log(kvp.Value.chunkData.IsEmpty());
+                if(!kvp.Value.chunkData.IsEmpty()) {
+                    chunkCount++;
+                }
+            }
+
+            writer.Write(chunkCount);
 
             foreach(KeyValuePair<int3, Chunk> kvp in World.inst.chunks) {
+                if(kvp.Value.chunkData.IsEmpty()) {
+                    continue;
+                }
                 writer.Write(kvp.Value.position.x);
                 writer.Write(kvp.Value.position.y);
                 writer.Write(kvp.Value.position.z);
