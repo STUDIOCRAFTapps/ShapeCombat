@@ -11,6 +11,7 @@ public class WorldEditor : MonoBehaviour {
     public Transform[] cursors;
     public Transform dragCursor;
     public EditorInventory editorInventory;
+    public TransformGizmoTilePrefab gizmos;
 
     [Header("Parameters")]
     public float defaultDistance = 4f;
@@ -19,6 +20,8 @@ public class WorldEditor : MonoBehaviour {
 
     private CursorMode cursorMode = CursorMode.OnTop;
 
+    public bool isVoxelMode = true;
+    public int selectedTilePrefabAsset = 0;
     public int selectedTileAsset = 0;
     private int selectedModel = 0;
     private bool isDragging;
@@ -37,7 +40,15 @@ public class WorldEditor : MonoBehaviour {
         cam = GetComponent<Camera>();
     }
 
+    private void OnDisable () {
+        selectedTilePrefab = null;
+    }
+
     void Update () {
+
+        // Switch voxel mode
+        if(Input.GetKeyDown(KeyCode.Alpha2))
+            SetVoxelMode(!isVoxelMode);
 
         // Position and rotate grid acording to editor movement
         PrepareGrid();
@@ -51,13 +62,18 @@ public class WorldEditor : MonoBehaviour {
 
                 if(Input.GetMouseButtonUp(0)) {
                     selectedTilePrefab = tilePrefab;
+                    gizmos.ClearAndAddTarget(selectedTilePrefab.transform);
                 }
                 return;
             }
             WrapCursorOverTilePrefab(selectedTilePrefab);
 
             if(Input.GetKeyUp(KeyCode.Space)) {
+                gizmos.ClearTargets();
                 selectedTilePrefab = null;
+            } else if(Input.GetKeyUp(KeyCode.Backspace)) {
+                World.inst.RemoveTilePrefab(tilePrefab);
+                Destroy(tilePrefab.gameObject);
             }
 
             return;
@@ -126,7 +142,7 @@ public class WorldEditor : MonoBehaviour {
             cursorPosAtDragStart = cursorPos;
             initialRotCode = currentRotCode;
         }
-        if(Input.GetMouseButton(0) & (cursorPosAtDragStart != cursorPos || !showCursor) && !isDragging && showCursor && !dragCancelled) {
+        if(Input.GetMouseButton(0) & (cursorPosAtDragStart != cursorPos || !showCursor) && !isDragging && showCursor && !dragCancelled && isVoxelMode) {
             isDragging = true;
         }
         if(isPlaneDraggingMode && isDragging) {
@@ -150,7 +166,11 @@ public class WorldEditor : MonoBehaviour {
             dragCancelled = false;
         } else if(Input.GetMouseButtonUp(0) && showCursor) {
             if(!isDragging) {
-                ExecuteTileActionAt(cursorPos.x, cursorPos.y, cursorPos.z, currentRotCode);
+                if(isVoxelMode) {
+                    ExecuteTileActionAt(cursorPos.x, cursorPos.y, cursorPos.z, currentRotCode);
+                } else {
+                    PlaceTilePrefab(cursorPos.x, cursorPos.y, cursorPos.z);
+                }
             } else {
                 isDragging = false;
                 for(int x = rectMin.x; x < rectMax.x + 1; x++) {
@@ -286,10 +306,12 @@ public class WorldEditor : MonoBehaviour {
 
         // Only show selected cursor, if not dragging
         for(int i = 0; i < cursors.Length; i++) {
-            if(cursors[i].gameObject.activeSelf != (i == selectedModel && !isDragging && showCursor)) {
+            if(cursors[i].gameObject.activeSelf != (i == selectedModel && !isDragging && showCursor && isVoxelMode)) {
                 cursors[i].gameObject.SetActive(i == selectedModel && !isDragging && showCursor);
             }
         }
+        if(!isVoxelMode)
+            cursors[0].gameObject.SetActive(true);
 
         // Set dragging cursor active if dragging only
         if(dragCursor.gameObject.activeSelf != (isDragging && showCursor && !dragCancelled)) {
@@ -323,7 +345,7 @@ public class WorldEditor : MonoBehaviour {
         Transform tPtr = tilePrefab.transform;
         BoxCollider tPCol = tilePrefab.GetComponent<BoxCollider>();
 
-        dragCursor.position = tPtr.position + tPCol.center - tPCol.size * 0.5f;
+        dragCursor.position = tPtr.TransformPoint(tPCol.center - tPCol.size * 0.5f);
         dragCursor.localScale = tPCol.size;
         dragCursor.eulerAngles = tPtr.eulerAngles;
     }
@@ -480,6 +502,15 @@ public class WorldEditor : MonoBehaviour {
     }
 
 
+    // Places a tile prefab
+    public void PlaceTilePrefab (int x, int y, int z) {
+        TilePrefab tilePrefab = Instantiate(World.inst.tilePrefabCollection[selectedTilePrefabAsset], World.inst.transform);
+        tilePrefab.transform.position = new Vector3(x, y, z) + Vector3.one * 0.5f;
+        tilePrefab.chunkOwner = World.WorldToChunk(new int3(x, y, z));
+        World.inst.AddTilePrefab(new int3(x, y, z), tilePrefab);
+    }
+
+
     // Get Camera Axis (Either XYZ -> 012, -XYZ -> 345)
     int GetCameraAxis () {
         if(math.abs(transform.forward.x) >= math.abs(transform.forward.y) && math.abs(transform.forward.x) >= math.abs(transform.forward.z)) {
@@ -572,6 +603,10 @@ public class WorldEditor : MonoBehaviour {
 
     private static int3 Vec3IntToInt3 (Vector3Int p) => new int3(p.x, p.y, p.z);
     #endregion
+
+    public void SetVoxelMode (bool isVoxelMode) {
+        this.isVoxelMode = isVoxelMode;
+    }
 }
 
 public enum CursorMode {

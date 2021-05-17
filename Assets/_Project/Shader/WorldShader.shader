@@ -1,56 +1,66 @@
-﻿Shader "Custom/WorldShader"{
+﻿// Upgrade NOTE: replaced '_Projector' with 'unity_Projector'
+// Upgrade NOTE: replaced '_ProjectorClip' with 'unity_ProjectorClip'
+
+Shader "Projector/LightAdvanced" {
 	Properties{
-		_MainTex("Tex", 2DArray) = "" {}
+		_Color("Main Color", Color) = (1,1,1,1)
+		_ShadowTex("Cookie", 2D) = "" {}
+		_FalloffTex("FallOff", 2D) = "" {}
+		_IntenceVal("Intensity", Range(1, 100)) = 1
 	}
 
-	SubShader{
-		Tags {
-			"PreviewType" = "Plane"
-			"RenderType" = "Opaque"
-		}
-		LOD 200
-		Pass {
-			CGPROGRAM
-			#pragma vertex vert
-			#pragma fragment frag
-			#pragma target 3.5
-			#pragma multi_compile_fog
-			#pragma require 2darray
+		Subshader{
+			Tags {"Queue" = "Transparent"}
+			Pass {
+				ZWrite Off
+				ColorMask RGB
+				Blend DstColor One
+				Offset - 1, -1
 
-			#include "UnityCG.cginc"
+				CGPROGRAM
+				#pragma vertex vert
+				#pragma fragment frag
+				#pragma multi_compile_fog
+				#include "UnityCG.cginc"
 
-			struct appdata_t {
-				float4 texcoord : TEXCOORD0;
-				float4 vertex : POSITION;
-				UNITY_VERTEX_INPUT_INSTANCE_ID
-			};
+				struct v2f {
+					float4 uvShadow : TEXCOORD0;
+					float4 uvFalloff : TEXCOORD1;
+					UNITY_FOG_COORDS(2)
+					float4 pos : SV_POSITION;
+				};
 
-			struct v2f {
-				float3 texcoord : TEXCOORD0;
-				float4 vertex : SV_POSITION;
-				UNITY_FOG_COORDS(1)
-				UNITY_VERTEX_OUTPUT_STEREO
-			};
+				float4x4 unity_Projector;
+				float4x4 unity_ProjectorClip;
 
-			float4 _MainTex_ST;
-			fixed4 _Color;
+				v2f vert(float4 vertex : POSITION)
+				{
+					v2f o;
+					o.pos = UnityObjectToClipPos(vertex);
+					o.uvShadow = mul(unity_Projector, vertex);
+					o.uvFalloff = mul(unity_ProjectorClip, vertex);
+					UNITY_TRANSFER_FOG(o,o.pos);
+					return o;
+				}
 
-			v2f vert(appdata_t v) {
-				v2f o;
-				UNITY_SETUP_INSTANCE_ID(v);
-				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
-				o.vertex = UnityObjectToClipPos(v.vertex);
-				o.texcoord.xyz = v.texcoord.xyz;
-				return o;
+				fixed4 _Color;
+				fixed _IntenceVal;
+				sampler2D _ShadowTex;
+				sampler2D _FalloffTex;
+
+				fixed4 frag(v2f i) : SV_Target
+				{
+					fixed4 texS = tex2Dproj(_ShadowTex, UNITY_PROJ_COORD(i.uvShadow));
+					texS.rgb *= _Color.rgb * _IntenceVal;
+					texS.a = 1.0 - texS.a;
+
+					fixed4 texF = tex2Dproj(_FalloffTex, UNITY_PROJ_COORD(i.uvFalloff));
+					fixed4 res = texS * texF.a;
+
+					UNITY_APPLY_FOG_COLOR(i.fogCoord, res, fixed4(0,0,0,0));
+					return res;
+				}
+				ENDCG
 			}
-
-			UNITY_DECLARE_TEX2DARRAY(_MainTex);
-
-			half4 frag(v2f i) : SV_Target {
-				fixed4 col = UNITY_SAMPLE_TEX2DARRAY(_MainTex, i.texcoord.xyz) * _Color;
-				return col;
-			}
-			ENDCG
 		}
-	}
 }

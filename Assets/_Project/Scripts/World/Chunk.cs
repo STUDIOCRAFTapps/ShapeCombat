@@ -20,7 +20,7 @@ public class Chunk : System.IDisposable {
     private Mesh mesh;
     private Material material;
     private int layer;
-    private List<TilePrefab> tilePrefabs;
+    public List<TilePrefab> tilePrefabs;
     public bool isDirty { private set; get; }
 
     public Chunk (Material material, int renderingLayer, int3 position) {
@@ -32,6 +32,7 @@ public class Chunk : System.IDisposable {
         this.material = material;
 
         colliderObject = new GameObject($"Collider {position.ToString()}", typeof(MeshCollider));
+        colliderObject.layer = 9;
         colliderObject.transform.SetParent(World.inst.transform);
         colliderObject.transform.position = worldPosition;
         meshCollider = colliderObject.GetComponent<MeshCollider>();
@@ -135,10 +136,10 @@ public class Chunk : System.IDisposable {
 
 public class ChunkData : System.IDisposable {
     public BlitableArray<TileData> tilesData;
-    public List<TilePrefabData> tilePrefabsData; 
+    public int3 position;
 
-    public ChunkData () {
-        tilePrefabsData = new List<TilePrefabData>();
+    public ChunkData (int3 position) {
+        this.position = position;
         tilesData = new BlitableArray<TileData>(World.inst.chunkSize * World.inst.chunkSize * World.inst.chunkSize, Allocator.Persistent);
         for(int i = 0; i < (World.inst.chunkSize * World.inst.chunkSize * World.inst.chunkSize); i++) {
             tilesData[i] = new TileData(ushort.MaxValue, 0, 0);
@@ -151,23 +152,54 @@ public class ChunkData : System.IDisposable {
 
 
 
-    public void SerializeChunkData (BinaryWriter writer) {
+    public void SerializeChunkData (BinaryWriter writer, List<TilePrefab> tilePrefabs) {
+        TileData previousTileData = new TileData();
+        int tileRunLength = 0;
+
         for(int i = 0; i < (World.inst.chunkSize * World.inst.chunkSize * World.inst.chunkSize); i++) {
-            GetTileData(i).WriteTile(writer);
+            TileData currentTileData = GetTileData(i);
+            if(i != 0) {
+                if(currentTileData != previousTileData) {
+                    previousTileData.WriteTile(writer);
+                    writer.Write((ushort)tileRunLength);
+                    tileRunLength = 0;
+                }
+            }
+            previousTileData = currentTileData;
+            tileRunLength++;
         }
-        writer.Write(tilePrefabsData.Count);
-        for(int i = 0; i < tilePrefabsData.Count; i++) {
-            tilePrefabsData[i].WriteTilePrefab(writer);
+        previousTileData.WriteTile(writer);
+        writer.Write((ushort)tileRunLength);
+        tileRunLength = 0;
+
+        writer.Write(tilePrefabs.Count);
+        for(int i = 0; i < tilePrefabs.Count; i++) {
+            TilePrefabData tpd = new TilePrefabData((ushort)tilePrefabs[i].prefabId, tilePrefabs[i].transform.position, tilePrefabs[i].transform.eulerAngles);
+            tpd.WriteTilePrefab(writer);
         }
     }
 
-    public void DeserializeChunkData (BinaryReader reader) {
-        for(int i = 0; i < (World.inst.chunkSize * World.inst.chunkSize * World.inst.chunkSize); i++) {
-            SetTileData(i, TileData.ReadTile(reader));
+    public void DeserializeChunkData (BinaryReader reader, out List<TilePrefab> tilePrefabs) {
+        int maxTile = (World.inst.chunkSize * World.inst.chunkSize * World.inst.chunkSize);
+        int totalTileRead = 0;
+        while(totalTileRead < maxTile) {
+            TileData tileData = TileData.ReadTile(reader);
+            ushort tileCount = reader.ReadUInt16();
+            for(int i = totalTileRead; i < totalTileRead + tileCount; i++) {
+                SetTileData(i, tileData);
+            }
+            totalTileRead += tileCount;
         }
+        tilePrefabs = new List<TilePrefab>();
         int prefabCount = reader.ReadInt32();
-        for(int i = 0; i < tilePrefabsData.Count; i++) {
-            tilePrefabsData.Add(TilePrefabData.ReadTilePrefab(reader));
+        for(int i = 0; i < prefabCount; i++) {
+            TilePrefabData tpd = TilePrefabData.ReadTilePrefab(reader);
+
+            TilePrefab tilePrefab = Object.Instantiate(World.inst.tilePrefabCollection[tpd.assetId], World.inst.transform);
+            tilePrefab.transform.position = tpd.position;
+            tilePrefab.transform.eulerAngles = tpd.rotation;
+            tilePrefab.chunkOwner = position;
+            tilePrefabs.Add(tilePrefab);
         }
     }
 

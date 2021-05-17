@@ -13,7 +13,8 @@ namespace RuntimeGizmos
 	[RequireComponent(typeof(Camera))]
 	public class TransformGizmo : MonoBehaviour
 	{
-		public TransformSpace space = TransformSpace.Global;
+        #region Header
+        public TransformSpace space = TransformSpace.Global;
 		public TransformType transformType = TransformType.Move;
 		public TransformPivot pivot = TransformPivot.Pivot;
 		public CenterType centerType = CenterType.All;
@@ -127,8 +128,10 @@ namespace RuntimeGizmos
 
 		static Material lineMaterial;
 		static Material outlineMaterial;
+        #endregion
 
-		void Awake()
+        #region Monobehaviours
+        void Awake ()
 		{
 			myCamera = GetComponent<Camera>();
 			SetMaterial();
@@ -222,8 +225,9 @@ namespace RuntimeGizmos
 			DrawQuads(circlesLines.y, GetColor(TransformType.Rotate, this.yColor, yColor));
 			DrawQuads(circlesLines.z, GetColor(TransformType.Rotate, this.zColor, zColor));
 		}
+        #endregion
 
-		Color GetColor(TransformType type, Color normalColor, Color nearColor, bool forceUseNormal = false)
+        Color GetColor (TransformType type, Color normalColor, Color nearColor, bool forceUseNormal = false)
 		{
 			return GetColor(type, normalColor, nearColor, false, 1, forceUseNormal);
 		}
@@ -628,8 +632,9 @@ namespace RuntimeGizmos
 
 			return Vector3.zero;
 		}
-	
-		void GetTarget()
+
+        #region Target Management and Utils
+        void GetTarget ()
 		{
 			if(nearAxis == Axis.None && Input.GetMouseButtonDown(0))
 			{
@@ -837,8 +842,10 @@ namespace RuntimeGizmos
 
 			childrenBuffer.Clear();
 		}
+        #endregion
 
-		public void SetPivotPoint()
+        #region Pivot Management and Utils
+        public void SetPivotPoint()
 		{
 			if(mainTargetRoot != null)
 			{
@@ -878,8 +885,7 @@ namespace RuntimeGizmos
 			pivotPoint += offset;
 			totalCenterPivotPoint += offset;
 		}
-
-
+        
 		IEnumerator ForceUpdatePivotPointAtEndOfFrame()
 		{
 			while(this.enabled)
@@ -913,8 +919,10 @@ namespace RuntimeGizmos
 				}
 			}
 		}
+        #endregion
 
-		public void SetTranslatingAxis(TransformType type, Axis axis, Axis planeAxis = Axis.None)
+        #region Axis Management and Utils
+        public void SetTranslatingAxis(TransformType type, Axis axis, Axis planeAxis = Axis.None)
 		{
 			this.translatingType = type;
 			this.nearAxis = axis;
@@ -1067,26 +1075,6 @@ namespace RuntimeGizmos
 			return closestDistance;
 		}
 
-		//float DistanceFromMouseToPlane(List<Vector3> planeLines)
-		//{
-		//	if(planeLines.Count >= 4)
-		//	{
-		//		Ray mouseRay = myCamera.ScreenPointToRay(Input.mousePosition);
-		//		Plane plane = new Plane(planeLines[0], planeLines[1], planeLines[2]);
-
-		//		float distanceToPlane;
-		//		if(plane.Raycast(mouseRay, out distanceToPlane))
-		//		{
-		//			Vector3 pointOnPlane = mouseRay.origin + (mouseRay.direction * distanceToPlane);
-		//			Vector3 planeCenter = (planeLines[0] + planeLines[1] + planeLines[2] + planeLines[3]) / 4f;
-
-		//			return Vector3.Distance(planeCenter, pointOnPlane);
-		//		}
-		//	}
-
-		//	return float.MaxValue;
-		//}
-
 		void SetAxisInfo()
 		{
 			if(mainTargetRoot != null)
@@ -1094,9 +1082,11 @@ namespace RuntimeGizmos
 				axisInfo.Set(mainTargetRoot, pivotPoint, GetProperTransformSpace());
 			}
 		}
+        #endregion
 
-		//This helps keep the size consistent no matter how far we are from it.
-		public float GetDistanceMultiplier()
+        #region Rendering
+        //This helps keep the size consistent no matter how far we are from it.
+        public float GetDistanceMultiplier()
 		{
 			if(mainTargetRoot == null) return 0f;
 
@@ -1421,5 +1411,6 @@ namespace RuntimeGizmos
 				outlineMaterial = new Material(Shader.Find("Custom/Outline"));
 			}
 		}
-	}
+        #endregion
+    }
 }

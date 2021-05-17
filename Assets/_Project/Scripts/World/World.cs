@@ -24,6 +24,7 @@ public class World : MonoBehaviour {
     void Awake () {
         inst = this;
         tileCollection.Init();
+        tilePrefabCollection.Init();
     }
 
     private void Start () {
@@ -38,7 +39,10 @@ public class World : MonoBehaviour {
         }
 
         if(Input.GetKeyDown(KeyCode.Alpha0)) {
-            SaveWorld();
+            SaveWorld(false);
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha9)) {
+            SaveWorld(true);
         }
     }
 
@@ -65,6 +69,22 @@ public class World : MonoBehaviour {
         }
 
         UpdateSurroundingChunks(p, chunkPos);
+    }
+
+    public void AddTilePrefab (int3 p, TilePrefab tilePrefab) {
+        int3 chunkPos = WorldToChunk(p);
+        if(chunks.TryGetValue(chunkPos, out Chunk chunk)) {
+            chunk.tilePrefabs.Add(tilePrefab);
+        } else {
+            CreateEmptyChunk(chunkPos);
+            chunks[chunkPos].tilePrefabs.Add(tilePrefab);
+        }
+    }
+
+    public void RemoveTilePrefab (TilePrefab tilePrefab) {
+        if(chunks.TryGetValue(tilePrefab.chunkOwner, out Chunk chunk)) {
+            chunk.tilePrefabs.Remove(tilePrefab);
+        }
     }
 
     public bool TryGetVoxelTile (int3 p, out TileData tileData) {
@@ -119,19 +139,20 @@ public class World : MonoBehaviour {
         }
     }
 
-    private void SaveWorld () {
-        worldSerializer.SerializeWorld();
+    private void SaveWorld (bool isAlternate) {
+        worldSerializer.SerializeWorld(isAlternate);
     }
 
-    public void CreateChunk (int3 position, ChunkData chunkData) {
+    public void CreateChunk (int3 position, ChunkData chunkData, List<TilePrefab> tilePrefabs) {
         Chunk chunk = new Chunk(material, renderingLayers, new int3(position.x, position.y, position.z));
         chunks.Add(position, chunk);
+        chunk.tilePrefabs = tilePrefabs;
         chunk.SetChunkData(chunkData);
     }
 
     public void CreateEmptyChunk (int3 position) {
         Chunk chunk = new Chunk(material, renderingLayers, new int3(position.x, position.y, position.z));
-        chunk.SetChunkData(new ChunkData());
+        chunk.SetChunkData(new ChunkData(position));
         chunks.Add(position, chunk);
     }
 

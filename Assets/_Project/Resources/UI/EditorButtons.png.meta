@@ -8,6 +8,12 @@ TextureImporter:
   - first:
       213: 6521083935757319086
     second: Rotate_Button
+  - first:
+      213: 2509073843219841490
+    second: Voxel_Button
+  - first:
+      213: -4930267194309435040
+    second: Prefab_Button
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -99,7 +105,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 32
         width: 32
         height: 32
       alignment: 0
@@ -120,7 +126,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 0
+        y: 32
         width: 32
         height: 32
       alignment: 0
@@ -132,6 +138,48 @@ TextureImporter:
       bones: []
       spriteID: eab32551a4b8f7a50800000000000000
       internalID: 6521083935757319086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Voxel_Button
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d1c754ed5502d220800000000000000
+      internalID: 2509073843219841490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prefab_Button
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 061ac63cb1c249bb0800000000000000
+      internalID: -4930267194309435040
       vertices: []
       indices: 
       edges: []

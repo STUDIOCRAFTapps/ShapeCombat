@@ -35,21 +35,22 @@ public class WorldSerializer : MonoBehaviour {
             for(int i = 0; i < chunkCount; i++) {
                 int3 chunkPosition = new int3(reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32());
 
-                ChunkData chunkData = new ChunkData();
-                chunkData.DeserializeChunkData(reader);
-                World.inst.CreateChunk(chunkPosition, chunkData);
+                ChunkData chunkData = new ChunkData(chunkPosition);
+                chunkData.DeserializeChunkData(reader, out List<TilePrefab> tilePrefabs);
+                World.inst.CreateChunk(chunkPosition, chunkData, tilePrefabs);
             }
         }
     }
 
-    public void SerializeWorld () {
+    public void SerializeWorld (bool isAlternate) {
         string worldFilePath = Path.Combine(Application.dataPath, assetSerializationPath, $"{currentMapName}.{worldExtension}");
+        if(isAlternate)
+            worldFilePath = Path.Combine(Application.dataPath, assetSerializationPath, $"{currentMapName}_alt.{worldExtension}");
 
         using(FileStream fs = new FileStream(worldFilePath, FileMode.Create))
         using(BinaryWriter writer = new BinaryWriter(fs)) {
             int chunkCount = 0;
             foreach(KeyValuePair<int3, Chunk> kvp in World.inst.chunks) {
-                Debug.Log(kvp.Value.chunkData.IsEmpty());
                 if(!kvp.Value.chunkData.IsEmpty()) {
                     chunkCount++;
                 }
@@ -65,7 +66,7 @@ public class WorldSerializer : MonoBehaviour {
                 writer.Write(kvp.Value.position.y);
                 writer.Write(kvp.Value.position.z);
 
-                kvp.Value.chunkData.SerializeChunkData(writer);
+                kvp.Value.chunkData.SerializeChunkData(writer, kvp.Value.tilePrefabs);
             }
         }
     }

@@ -9,6 +9,8 @@ public struct TileData {
     public byte model;
     public byte rotation;
 
+
+
     public TileData (ushort assetId, byte rotation, byte model) {
         this.assetId = assetId;
         this.rotation = rotation;
@@ -35,9 +37,39 @@ public struct TileData {
             writer.Write(rotation);
     }
 
+    public override bool Equals (object obj) {
+        if(!(obj is TileData)) {
+            return false;
+        }
+
+        var data = (TileData)obj;
+        return assetId == data.assetId &&
+               model == data.model &&
+               rotation == data.rotation;
+    }
+
+    public override int GetHashCode () {
+        var hashCode = 2033632138;
+        hashCode = hashCode * -1521134295 + assetId.GetHashCode();
+        hashCode = hashCode * -1521134295 + model.GetHashCode();
+        hashCode = hashCode * -1521134295 + rotation.GetHashCode();
+        hashCode = hashCode * -1521134295 + IsAirTile.GetHashCode();
+        return hashCode;
+    }
+
     public bool IsAirTile {
         get { return assetId == ushort.MaxValue; }
     }
+
+    public static bool operator == (TileData data1, TileData data2) {
+        return data1.Equals(data2);
+    }
+
+    public static bool operator != (TileData data1, TileData data2) {
+        return !(data1 == data2);
+    }
+
+
 }
 
 public struct TilePrefabData {

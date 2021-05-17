@@ -6,4 +6,5 @@ using Unity.Mathematics;
 public class TilePrefab : MonoBehaviour {
     public int prefabId;
     public int3 chunkOwner;
+    public Sprite icon;
 }
