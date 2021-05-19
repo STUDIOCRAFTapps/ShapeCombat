@@ -11,6 +11,7 @@ using System;
 public class ShapeDrawSystem4 : MonoBehaviour {
     [Header("References")]
     public LineRenderer lineRenderer;
+    public LineRenderer lineRenderer2;
     public LineRenderer outlineRenderer;
     public ParticleSystem starsParticles;
     public TextMeshProUGUI resultText;
@@ -42,7 +43,7 @@ public class ShapeDrawSystem4 : MonoBehaviour {
     public float minCircleRadius = 1f;
     public float maxCircleRadius = 8f;
 
-    private bool isDrawing = false;
+    [HideInInspector] public bool isDrawing { private set; get; } = false;
     private List<Vector2> points;
     private Vector2 lastPoint;
     private Dictionary<string, SymbolParameter> symbolParametersDict;
@@ -51,6 +52,8 @@ public class ShapeDrawSystem4 : MonoBehaviour {
     private SymbolParameter detectedShape;
     private float fadeOutValue;
 
+    public delegate void ExecuteSymbolHandler (string symbolKey);
+    public event ExecuteSymbolHandler executeSymbol;
 
 
     #region Setup
@@ -73,14 +76,18 @@ public class ShapeDrawSystem4 : MonoBehaviour {
             points.Clear();
             waveFadeValues.Clear();
             lineRenderer.positionCount = 1;
+            lineRenderer2.positionCount = 1;
             lineRenderer.SetPosition(0, point);
+            lineRenderer2.SetPosition(0, point);
             waveFadeValues.Add(0f);
             points.Add(point);
             lastPoint = point;
         } else if(Input.GetMouseButton(0)) {
             if(Vector2.Distance(point, lastPoint) > minMovingDistance) {
                 lineRenderer.positionCount++;
+                lineRenderer2.positionCount++;
                 lineRenderer.SetPosition(lineRenderer.positionCount - 1, point);
+                lineRenderer2.SetPosition(lineRenderer2.positionCount - 1, point);
                 points.Add(point);
                 waveFadeValues.Add(0f);
                 lastPoint = point;
@@ -92,7 +99,6 @@ public class ShapeDrawSystem4 : MonoBehaviour {
         if(Input.GetMouseButtonUp(0)) {
             fadeOutValue = 0f;
             OnEndLine();
-            OnDoneDrawing();
         }
 
         UpdateVisuals();
@@ -102,25 +108,23 @@ public class ShapeDrawSystem4 : MonoBehaviour {
 
 
     #region Visuals
-    void OnDoneDrawing () {
-        for(int i = 0; i < points.Count; i++) {
-            starsParticles.transform.position = points[i];
-            starsParticles.Emit(1);
-        }
-    }
 
     void UpdateVisuals () {
         float alpha = 1f;
-        if(points.Count >= 2 && detectedShape != null && !isDrawing) {
+        if(points.Count >= 2 && !isDrawing) {
             fadeOutValue = Mathf.Max(0f, fadeOutValue + Time.deltaTime * fadeOutSpeed);
             alpha = 1f - Mathf.Clamp01(fadeOutValue - preFadeOutTime);
         }
 
         colorLerpValue = Mathf.Clamp01(colorLerpValue + colorFadeSpeed * Time.deltaTime);
         Color color = Color.Lerp(fromColor, toColor, colorLerpValue);
+        Color color2 = Color.black;
         color.a = alpha;
+        color2.a = alpha;
         lineRenderer.startColor = color;
+        lineRenderer2.startColor = color2;
         lineRenderer.endColor = color;
+        lineRenderer2.endColor = color2;
 
         for(int i = 0; i < waveFadeValues.Count; i++) {
             waveFadeValues[i] = Mathf.Clamp01(waveFadeValues[i] + waveFadeSpeed * Time.deltaTime);
@@ -129,6 +133,7 @@ public class ShapeDrawSystem4 : MonoBehaviour {
             float waveX = Mathf.PerlinNoise(points[i].x * waveScale + Time.time * waveSpeed, points[i].y * waveScale + Time.time * waveSpeed) * 2f - 1f;
             float waveY = Mathf.PerlinNoise(points[i].x * waveScale + Time.time * waveSpeed + 1000f, points[i].y * waveScale + Time.time * waveSpeed) * 2f - 1f;
             lineRenderer.SetPosition(i, Vector2.Lerp(points[i], points[i] + new Vector2(waveX, waveY) * waveAmplitude, waveFadeValues[i]));
+            lineRenderer2.SetPosition(i, lineRenderer.GetPosition(i));
         }
     }
 
@@ -253,6 +258,12 @@ public class ShapeDrawSystem4 : MonoBehaviour {
     }
 
     void OnEndLine () {
+        for(int i = 0; i < points.Count; i++) {
+            starsParticles.transform.position = points[i];
+            starsParticles.Emit(1);
+        }
+        if(!string.IsNullOrEmpty(lastColorKey))
+            executeSymbol(lastColorKey);
         angles.Clear();
     }
 

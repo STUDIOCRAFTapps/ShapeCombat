@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[DefaultExecutionOrder(1)]
 public class CamFollowPixelTarget : MonoBehaviour {
 
     new public Camera camera;
@@ -27,9 +28,9 @@ public class CamFollowPixelTarget : MonoBehaviour {
                 unitTarget = anchorUnitTarget + diff * (1 / (16f * pixelPerfectCamera.pixelRatio));
             }
         } else {
-            unitTarget = new Vector2(target.transform.position.x, target.transform.position.y + target.transform.position.z * 0.5f - height);
+            unitTarget = new Vector2(target.transform.position.x, target.transform.position.y * 2f + target.transform.position.z * 1f - height * 2f);
         }
 
-        transform.position = new Vector3(Mathf.FloorToInt(unitTarget.x * 16) / 16f, height, (Mathf.FloorToInt(unitTarget.y * 16f) / 8f));
+        transform.position = new Vector3(Mathf.RoundToInt(unitTarget.x * 16) / 16f, height, (Mathf.RoundToInt(unitTarget.y * 16f) / 16f));
     }
 }

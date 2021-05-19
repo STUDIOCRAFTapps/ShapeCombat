@@ -2,7 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Direction {
+    Up, Down, Left, Right
+}
+
 public class PlayerController : MonoBehaviour {
+
+    [Header("Reference")]
+    public ShapeDrawSystem4 shapeDraw;
 
     [Header("Parameters")]
     public float walkSpeed;
@@ -11,24 +18,49 @@ public class PlayerController : MonoBehaviour {
     public float gravity;
     public float jumpForce;
 
-    new public Rigidbody rigidbody;
+    new public CharacterController rigidbody;
+    private Vector3 velocity;
+    [HideInInspector] public Direction visualDirection { get; private set; }
+    [HideInInspector] public bool isMoving { get; private set; }
+    [HideInInspector] public bool isGrounded { get; private set; }
 
     void Start () {
         
     }
     
     void FixedUpdate () {
-        Vector3 vel = rigidbody.velocity;
+        Vector3 vel = velocity;
+
+        bool doNotMove = shapeDraw.isDrawing;
+
+        if(shapeDraw.isDrawing)
+            visualDirection = Direction.Down;
 
         Vector3 direction = Vector3.zero;
-        if(Input.GetKey(KeyCode.S))
+        if(Input.GetKey(KeyCode.S) && !doNotMove)
             direction += Vector3.back;
-        if(Input.GetKey(KeyCode.W))
+        if(Input.GetKey(KeyCode.W) && !doNotMove)
             direction += Vector3.forward;
-        if(Input.GetKey(KeyCode.A))
+        if(Input.GetKey(KeyCode.A) && !doNotMove)
             direction += Vector3.left;
-        if(Input.GetKey(KeyCode.D))
+        if(Input.GetKey(KeyCode.D) && !doNotMove)
             direction += Vector3.right;
+
+        if(direction.z == -1 && direction.x == 0)
+            visualDirection = Direction.Down;
+        if(direction.z == 1 && direction.x == 0)
+            visualDirection = Direction.Up;
+        if(direction.z == 0 && direction.x == -1)
+            visualDirection = Direction.Left;
+        if(direction.z == 0 && direction.x == 1)
+            visualDirection = Direction.Right;
+
+        if(direction.sqrMagnitude > 0.25f) {
+            isMoving = true;
+        } else {
+            isMoving = false;
+        }
+
         if(direction.sqrMagnitude > 1f)
             direction.Normalize();
         direction.z *= 1.5f;
@@ -36,13 +68,24 @@ public class PlayerController : MonoBehaviour {
         vel = AccelerateVelocity(vel, direction, walkSpeed, walkAcceleration);
         vel.x *= (1f - Time.deltaTime * groundFriction);
         vel.z*= (1f - Time.deltaTime * groundFriction);
-        vel.y += -gravity * Time.deltaTime;
-
-        bool isGrounded = IsGrounded();
-        if(isGrounded && Input.GetKey(KeyCode.Space))
+        
+        isGrounded = IsGrounded() || rigidbody.isGrounded;
+        if(!isGrounded) {
+            vel.y += -gravity * Time.deltaTime;
+        } else {
+            vel.y = 0f;
+        }
+        if(isGrounded && Input.GetKey(KeyCode.Space)) {
             vel += Vector3.up * jumpForce;
+        }
 
-        rigidbody.velocity = vel;
+        if(transform.position.y < 3f) {
+            vel += Vector3.up * 50f * Time.deltaTime;
+        }
+
+        velocity = vel;
+
+        rigidbody.Move(velocity * Time.deltaTime);
     }
 
     private static Vector3 AccelerateVelocity (Vector3 velocity, Vector3 direction, float maxSpeed, float acceleration) {
@@ -72,6 +115,6 @@ public class PlayerController : MonoBehaviour {
     }
 
     bool IsGrounded () {
-        return Physics.CheckBox(transform.position, new Vector3(0.39f, 2/16f, 0.39f), Quaternion.identity, 1 << 9);
+        return Physics.CheckBox(transform.position, new Vector3(0.2f, 2/16f, 0.2f), Quaternion.identity, 1 << 9);
     }
 }

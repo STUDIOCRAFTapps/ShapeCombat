@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e8cd342604e9b643b6dec7e7aeb3387, type: 3}
+  m_Name: SkoobertAnimation
+  m_EditorClassIdentifier: 
+  framesPerSecond: 10
+  clips:
+  - key: summon
+    frames:
+    - {fileID: -7722813986908544346, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+    - {fileID: -6723688091264034252, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+    - {fileID: 8234966904419437097, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+    - {fileID: 7128817738119968767, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+    - {fileID: 8608056774760356596, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+  clipsDirectional:
+  - key: idle
+    framesUp:
+    - {fileID: 4759116210547367207, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+    - {fileID: -30934056097712376, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+    - {fileID: 3514690984827910343, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+    framesDown:
+    - {fileID: -8627830328208306935, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+    - {fileID: -1424960302615472825, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+    - {fileID: 8480115988088329196, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+    framesLeft:
+    - {fileID: -1556650485927489152, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+    - {fileID: 6048484509066840179, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+    - {fileID: -2240655767681077234, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+    framesRight:
+    - {fileID: -7039814148290695439, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+    - {fileID: 5804822199387549156, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+    - {fileID: -7470167844105178644, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+  - key: walk
+    framesUp:
+    - {fileID: 3520219166826244258, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+    - {fileID: 4371355058680317319, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+    - {fileID: 900831860282612705, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+    - {fileID: -8746727556897085603, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+    - {fileID: -5390901003077879897, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+    - {fileID: 1500997745845149737, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+    framesDown:
+    - {fileID: 888233999491908998, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+    - {fileID: -8599212915865783685, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+    - {fileID: 1166928782156955199, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+    - {fileID: -1877651001159420949, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+    - {fileID: -8662699340474933306, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+    - {fileID: -6420898242662559043, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+    framesLeft:
+    - {fileID: -3469360757538121218, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+    - {fileID: 3318625153455609275, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+    - {fileID: -4474591670598447945, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+    - {fileID: 4775614113220684942, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+    - {fileID: 4473860681941073885, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+    - {fileID: -5445446666575491084, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+    framesRight:
+    - {fileID: -8182130195887402987, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+    - {fileID: 7656561711480981474, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+    - {fileID: -3441915709712769312, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+    - {fileID: 291432158096269785, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+    - {fileID: 4553154960023531345, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
+    - {fileID: -8448457837651101477, guid: 891f49cd3b138f94ba6133891ae709b2, type: 3}
