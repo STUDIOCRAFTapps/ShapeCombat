@@ -28,7 +28,7 @@ public class WorldSerializer : MonoBehaviour {
         if(!File.Exists(worldFilePath))
             return;
 
-        using(FileStream fs = new FileStream(worldFilePath, FileMode.Open))
+        using(FileStream fs = new FileStream(worldFilePath, FileMode.Open, FileAccess.Read, FileShare.Read))
         using(BinaryReader reader = new BinaryReader(fs)) {
             int chunkCount = reader.ReadInt32();
 

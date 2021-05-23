@@ -27,7 +27,7 @@ public class CamFollowPixelTarget : MonoBehaviour {
                 Vector2 diff = anchorPoint - new Vector2(Input.mousePosition.x, Input.mousePosition.y);
                 unitTarget = anchorUnitTarget + diff * (1 / (16f * pixelPerfectCamera.pixelRatio));
             }
-        } else {
+        } else if(target != null) {
             unitTarget = new Vector2(target.transform.position.x, target.transform.position.y * 2f + target.transform.position.z * 1f - height * 2f);
         }
 

@@ -8,8 +8,7 @@ public enum Direction {
 
 public class PlayerController : MonoBehaviour {
 
-    [Header("Reference")]
-    public ShapeDrawSystem4 shapeDraw;
+    public PlayerGameObject playerObject;
 
     [Header("Parameters")]
     public float walkSpeed;
@@ -31,9 +30,9 @@ public class PlayerController : MonoBehaviour {
     void FixedUpdate () {
         Vector3 vel = velocity;
 
-        bool doNotMove = shapeDraw.isDrawing;
+        bool doNotMove = ShapeDrawSystem4.inst.isDrawing || !playerObject.isSelfControlled;
 
-        if(shapeDraw.isDrawing)
+        if(ShapeDrawSystem4.inst.isDrawing)
             visualDirection = Direction.Down;
 
         Vector3 direction = Vector3.zero;
@@ -75,7 +74,7 @@ public class PlayerController : MonoBehaviour {
         } else {
             vel.y = 0f;
         }
-        if(isGrounded && Input.GetKey(KeyCode.Space)) {
+        if(isGrounded && Input.GetKey(KeyCode.Space) && !doNotMove) {
             vel += Vector3.up * jumpForce;
         }
 

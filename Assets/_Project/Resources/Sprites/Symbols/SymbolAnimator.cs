@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SymbolAnimator : MonoBehaviour {
-
-    public ShapeDrawSystem4 shapeDraw;
+    
     public SpriteRenderer[] symbolRender;
     private float fade;
     
-    void Awake () {
-        shapeDraw.executeSymbol += OnExecuteSymbol;
+    void Start () {
+        ShapeDrawSystem4.inst.executeSymbol += OnExecuteSymbol;
     }
 
     void OnDestroy () {
-        shapeDraw.executeSymbol -= OnExecuteSymbol;
+        ShapeDrawSystem4.inst.executeSymbol -= OnExecuteSymbol;
     }
 
     void OnExecuteSymbol (string key) {

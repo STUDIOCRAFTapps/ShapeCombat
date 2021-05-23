@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PlayerAnimator : MonoBehaviour {
 
-
-    public ShapeDrawSystem4 shapeDraw;
+    
     public PlayerController playerController;
     new public SpriteRenderer renderer;
     public AnimationAsset playerAnimationAsset;
@@ -18,13 +17,13 @@ public class PlayerAnimator : MonoBehaviour {
     const float maxBlinkTime = 4f;
 
     void Update () {
-        if(wasDrawing != shapeDraw.isDrawing) {
+        if(wasDrawing != ShapeDrawSystem4.inst.isDrawing) {
             time = 0f;
         } else if(!wasMoving && playerController.isMoving) {
             time = 0f;
         }
 
-        if(shapeDraw.isDrawing) {
+        if(ShapeDrawSystem4.inst.isDrawing) {
             Sprite[] summonSprites = playerAnimationAsset.clips[0].frames;
             time = Mathf.Repeat(time, summonSprites.Length);
             renderer.sprite = summonSprites[(int)time];
@@ -56,6 +55,6 @@ public class PlayerAnimator : MonoBehaviour {
         }
 
         wasMoving = playerController.isMoving;
-        wasDrawing = shapeDraw.isDrawing;
+        wasDrawing = ShapeDrawSystem4.inst.isDrawing;
     }
 }

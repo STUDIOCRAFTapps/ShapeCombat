@@ -16,6 +16,8 @@ public class World : MonoBehaviour {
     public TilePrefabAssetCollection tilePrefabCollection;
     new public Camera camera;
     public WorldSerializer worldSerializer;
+    public ShapeDrawSystem4 shapeSystem;
+    public CamFollowPixelTarget camFollow;
     
     public Dictionary<int3, Chunk> chunks;
     

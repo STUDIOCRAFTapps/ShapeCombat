@@ -57,7 +57,10 @@ public class ShapeDrawSystem4 : MonoBehaviour {
 
 
     #region Setup
+    public static ShapeDrawSystem4 inst;
     void Start () {
+        inst = this;
+
         fromColor = Color.white;
         lineRenderer.startColor = Color.white;
         lineRenderer.endColor = Color.white;
