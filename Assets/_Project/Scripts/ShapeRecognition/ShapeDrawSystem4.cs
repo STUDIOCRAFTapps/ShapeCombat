@@ -8,6 +8,21 @@ using System.Linq;
 using TMPro;
 using System;
 
+public enum Symbols {
+    HLine,
+    VLine,
+    TopHat,
+    LeftHat,
+    RightHat,
+    BottomHat,
+    Circle,
+    Heart,
+    Spiral,
+    Delta,
+    Lightning,
+    None
+}
+
 public class ShapeDrawSystem4 : MonoBehaviour {
     [Header("References")]
     public LineRenderer lineRenderer;
@@ -46,13 +61,13 @@ public class ShapeDrawSystem4 : MonoBehaviour {
     [HideInInspector] public bool isDrawing { private set; get; } = false;
     private List<Vector2> points;
     private Vector2 lastPoint;
-    private Dictionary<string, SymbolParameter> symbolParametersDict;
+    private Dictionary<Symbols, SymbolParameter> symbolParametersDict;
 
     private List<float> waveFadeValues;
     private SymbolParameter detectedShape;
     private float fadeOutValue;
 
-    public delegate void ExecuteSymbolHandler (string symbolKey);
+    public delegate void ExecuteSymbolHandler (Symbols symbol);
     public event ExecuteSymbolHandler executeSymbol;
 
 
@@ -66,9 +81,9 @@ public class ShapeDrawSystem4 : MonoBehaviour {
         lineRenderer.endColor = Color.white;
         points = new List<Vector2>();
         waveFadeValues = new List<float>();
-        symbolParametersDict = new Dictionary<string, SymbolParameter>();
+        symbolParametersDict = new Dictionary<Symbols, SymbolParameter>();
         for(int i = 0; i < symbolParameters.Length; i++) {
-            symbolParametersDict.Add(symbolParameters[i].key, symbolParameters[i]);
+            symbolParametersDict.Add(symbolParameters[i].symbol, symbolParameters[i]);
         }
         InitAnalysis();
     }
@@ -174,7 +189,7 @@ public class ShapeDrawSystem4 : MonoBehaviour {
     private Vector2 maxXLimitReachPos;
     private int corners;
 
-    private string lastColorKey;
+    private Symbols lastColorKey;
     private float colorLerpValue = 0f;
     private Color fromColor;
     private Color toColor;
@@ -265,7 +280,7 @@ public class ShapeDrawSystem4 : MonoBehaviour {
             starsParticles.transform.position = points[i];
             starsParticles.Emit(1);
         }
-        if(!string.IsNullOrEmpty(lastColorKey))
+        if(lastColorKey != Symbols.None)
             executeSymbol(lastColorKey);
         angles.Clear();
     }
@@ -299,8 +314,8 @@ public class ShapeDrawSystem4 : MonoBehaviour {
             }
             detectedShape = symbolParametersDict[results[0].key];
         } else {
-            if(lastColorKey != string.Empty) {
-                lastColorKey = string.Empty;
+            if(lastColorKey != Symbols.None) {
+                lastColorKey = Symbols.None;
                 colorLerpValue = 0f;
                 fromColor = lineRenderer.startColor;
                 toColor = Color.white;
@@ -330,7 +345,7 @@ public class ShapeDrawSystem4 : MonoBehaviour {
 
         score = endAngleValue * distanceValue * ratio;
 
-        return new DrawingResult("HLine", score, 10);
+        return new DrawingResult(Symbols.HLine, score, 10);
     }
 
     // Priority: 10
@@ -352,7 +367,7 @@ public class ShapeDrawSystem4 : MonoBehaviour {
 
         score = startAngleValue * endAngleValue * distanceValue * ratio;
 
-        return new DrawingResult("VLine", score, 10);
+        return new DrawingResult(Symbols.VLine, score, 10);
     }
 
     // Priority: 8
@@ -373,7 +388,7 @@ public class ShapeDrawSystem4 : MonoBehaviour {
             }
         }
 
-        return new DrawingResult("HatT", score, 8);
+        return new DrawingResult(Symbols.TopHat, score, 8);
     }
 
     // Priority: 7
@@ -394,7 +409,7 @@ public class ShapeDrawSystem4 : MonoBehaviour {
             }
         }
 
-        return new DrawingResult("HatL", score, 7);
+        return new DrawingResult(Symbols.LeftHat, score, 7);
     }
 
     // Priority: 7
@@ -416,7 +431,7 @@ public class ShapeDrawSystem4 : MonoBehaviour {
             }
         }
 
-        return new DrawingResult("HatR", score, 7);
+        return new DrawingResult(Symbols.RightHat, score, 7);
     }
 
     // Priority: 5
@@ -437,7 +452,7 @@ public class ShapeDrawSystem4 : MonoBehaviour {
             }
         }
 
-        return new DrawingResult("HatB", score, 5);
+        return new DrawingResult(Symbols.BottomHat, score, 5);
     }
 
     // Priority: 11
@@ -451,7 +466,7 @@ public class ShapeDrawSystem4 : MonoBehaviour {
 
         score = revolutionValue * distanceValue * radiusValue;
 
-        return new DrawingResult("Circle", score, 11);
+        return new DrawingResult(Symbols.Circle, score, 11);
     }
 
     // Priority: 13
@@ -474,7 +489,7 @@ public class ShapeDrawSystem4 : MonoBehaviour {
 
         score = isHearth * distanceValue * radiusValue;
 
-        return new DrawingResult("Hearth", score, 13);
+        return new DrawingResult(Symbols.Heart, score, 13);
     }
 
     // Priority: 12
@@ -485,7 +500,7 @@ public class ShapeDrawSystem4 : MonoBehaviour {
         float radiusValue = Mathf.InverseLerp(minCircleRadius, maxCircleRadius, averageRadius);
         score = radiusValue * Mathf.Clamp01((Mathf.Abs(totalRevolution) - 1f) * 2f);
 
-        return new DrawingResult("Spiral", score, 12);
+        return new DrawingResult(Symbols.Spiral, score, 12);
     }
 
     // Priority: 10
@@ -505,7 +520,7 @@ public class ShapeDrawSystem4 : MonoBehaviour {
         }
         score = isDelta * distanceValue;
 
-        return new DrawingResult("Delta", score, 10);
+        return new DrawingResult(Symbols.Delta, score, 10);
     }
 
     // Priority: 9
@@ -532,7 +547,7 @@ public class ShapeDrawSystem4 : MonoBehaviour {
             outlineRenderer.SetPosition(3, endPosition);
         }
 
-        return new DrawingResult("Lightning", score, 9);
+        return new DrawingResult(Symbols.Lightning, score, 9);
     }
     #endregion
 
@@ -555,11 +570,11 @@ public class ShapeDrawSystem4 : MonoBehaviour {
 }
 
 public struct DrawingResult : IComparable {
-    public string key;
+    public Symbols key;
     public float score;
     public int priority;
 
-    public DrawingResult (string key, float score, int priority) {
+    public DrawingResult (Symbols key, float score, int priority) {
         this.key = key;
         this.score = score;
         this.priority = priority;
@@ -578,6 +593,6 @@ public struct DrawingResult : IComparable {
 [Serializable]
 public class SymbolParameter {
     public string name;
-    public string key;
+    public Symbols symbol;
     public Color color = Color.white;
 }

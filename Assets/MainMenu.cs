@@ -13,6 +13,11 @@ public class MainMenu : MonoBehaviour {
     public TMP_InputField portField;
 
     private float lobbyColorFade;
+    public static MainMenu inst;
+    private void Awake () {
+        inst = this;
+    }
+
     private void Update () {
         lobbyColorFade = Mathf.Clamp01(lobbyColorFade + (Lobby.DoesLobbyExist ? 1f : -1f) * Time.deltaTime);
         menuCamera.backgroundColor = Color.Lerp(defaultColor, lobbyColor, lobbyColorFade);

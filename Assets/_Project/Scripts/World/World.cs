@@ -20,6 +20,7 @@ public class World : MonoBehaviour {
     public CamFollowPixelTarget camFollow;
     
     public Dictionary<int3, Chunk> chunks;
+    public NativeHashMap<int3, BlitableArray<TileData>> chunkDataNative;
     
 
     public static World inst;
@@ -49,10 +50,15 @@ public class World : MonoBehaviour {
     }
 
     private void OnDestroy () {
+        tileCollection.Dispose();
+        if(chunks == null)
+            return;
+
         foreach(KeyValuePair<int3, Chunk> kvp in chunks) {
             kvp.Value.Dispose(); // VERY IMPORTANT. UNSAFE MEMORY - WOULDN'T BE RELEASED OTHERWISE
         }
-        tileCollection.Dispose();
+
+        chunkDataNative.Dispose();
     }
 
 
@@ -136,7 +142,9 @@ public class World : MonoBehaviour {
     #region Load/Save World & Create/Delete Chunks
     private void LoadWorld () {
         worldSerializer.DeserializeWorld();
+        chunkDataNative = new NativeHashMap<int3, BlitableArray<TileData>>(chunks.Count, Allocator.Persistent);
         foreach(KeyValuePair<int3, Chunk> kvp in chunks) {
+            chunkDataNative.Add(kvp.Key, kvp.Value.chunkData.tilesData);
             kvp.Value.OnChunkDataUpdated();
         }
     }

@@ -11,6 +11,7 @@ public class Lobby : NetworkBehaviour {
     private bool wasInitied;
 
     public static bool DoesLobbyExist { get { return inst != null; } }
+    public static Dictionary<ulong, LocalPlayer> PlayerDictionary { get { return inst.localPlayers; } }
 
     #region Init Lobby
     private static Lobby inst;

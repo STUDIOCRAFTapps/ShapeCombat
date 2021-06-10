@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerGameObject : MonoBehaviour {
 
+    public PlayerAnimator playerAnimator;
     public SymbolAnimator symbolAnimator;
     public PlayerController controller;
     public UserData userData;

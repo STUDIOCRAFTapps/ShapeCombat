@@ -15,6 +15,8 @@ public class AnimationAsset : ScriptableObject {
 public class AnimationAssetClip {
     public string key;
     public Sprite[] frames;
+
+    public float customFramePerSecond = 15f;
 }
 
 [Serializable]

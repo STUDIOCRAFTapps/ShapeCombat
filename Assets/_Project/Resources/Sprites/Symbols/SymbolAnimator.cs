@@ -7,17 +7,11 @@ public class SymbolAnimator : MonoBehaviour {
     public SpriteRenderer[] symbolRender;
     private float fade;
     
-    void Start () {
-        ShapeDrawSystem4.inst.executeSymbol += OnExecuteSymbol;
-    }
+    
 
-    void OnDestroy () {
-        ShapeDrawSystem4.inst.executeSymbol -= OnExecuteSymbol;
-    }
-
-    void OnExecuteSymbol (string key) {
+    public void OnExecuteSymbol (Symbols symbol) {
         foreach(SpriteRenderer sr in symbolRender) {
-            sr.sprite = DrawingUtility.GetSymbolSprite(key, SymbolSpriteSize.Large);
+            sr.sprite = SymbolUtility.GetSymbolSprite(symbol, SymbolSpriteSize.Large);
         }
         fade = 2f;
     }

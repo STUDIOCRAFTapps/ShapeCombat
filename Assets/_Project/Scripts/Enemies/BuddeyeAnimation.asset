@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fdcbece60dc8e04c811ab742fa3be8b, type: 3}
+  m_Name: BuddeyeAnimation
+  m_EditorClassIdentifier: 
+  isFirstRepeatClipBlinking: 1
+  repeatClips:
+  - key: Idle
+    frames:
+    - {fileID: -6823364518375722522, guid: ac98f131e649e6345bd874694e916724, type: 3}
+    - {fileID: 5184390274515352971, guid: ac98f131e649e6345bd874694e916724, type: 3}
+    - {fileID: 1898669481067905710, guid: ac98f131e649e6345bd874694e916724, type: 3}
+    customFramePerSecond: 15
+  - key: Walk
+    frames:
+    - {fileID: 8344491852812776007, guid: ac98f131e649e6345bd874694e916724, type: 3}
+    - {fileID: 8375642071445416558, guid: ac98f131e649e6345bd874694e916724, type: 3}
+    - {fileID: 1561068728471626901, guid: ac98f131e649e6345bd874694e916724, type: 3}
+    - {fileID: 4784805936112396016, guid: ac98f131e649e6345bd874694e916724, type: 3}
+    customFramePerSecond: 15
+  actionClips:
+  - key: Jump
+    frames:
+    - {fileID: -5594576701921427743, guid: ac98f131e649e6345bd874694e916724, type: 3}
+    - {fileID: -230737020269822910, guid: ac98f131e649e6345bd874694e916724, type: 3}
+    - {fileID: 3201104234151623179, guid: ac98f131e649e6345bd874694e916724, type: 3}
+    customFramePerSecond: 10
+  - key: Attack
+    frames:
+    - {fileID: -2003358767483724065, guid: ac98f131e649e6345bd874694e916724, type: 3}
+    - {fileID: -2309533173070895845, guid: ac98f131e649e6345bd874694e916724, type: 3}
+    - {fileID: 987066978675233535, guid: ac98f131e649e6345bd874694e916724, type: 3}
+    - {fileID: 984977936102096544, guid: ac98f131e649e6345bd874694e916724, type: 3}
+    customFramePerSecond: 10
+  deathAnimation:
+  - {fileID: 219199714862221866, guid: ac98f131e649e6345bd874694e916724, type: 3}
+  - {fileID: -4230468027116612465, guid: ac98f131e649e6345bd874694e916724, type: 3}
+  - {fileID: -2276656584122511773, guid: ac98f131e649e6345bd874694e916724, type: 3}
+  - {fileID: -4801650480225099282, guid: ac98f131e649e6345bd874694e916724, type: 3}

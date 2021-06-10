@@ -48,7 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 5539942050053233089}
   renderer: {fileID: 5539942049088193241}
-  playerAnimationAsset: {fileID: 11400000, guid: 41853fd617eaa7947b5de7210d229af4, type: 2}
+  playerAnimationAsset: {fileID: 11400000, guid: ac7d4506c80110049b1c016d4f978dc7, type: 2}
+  isDrawing: 0
 --- !u!1 &5539942048979497346
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,6 +92,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -173,6 +175,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -255,6 +258,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -337,6 +341,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -419,6 +424,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -471,6 +477,7 @@ GameObject:
   - component: {fileID: 2889667353607071116}
   - component: {fileID: 5539942050053233089}
   - component: {fileID: 5539942050053233090}
+  - component: {fileID: 1591751138441468896}
   m_Layer: 11
   m_Name: Player
   m_TagString: Untagged
@@ -505,6 +512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20dacd12d3b0f7e4c8f2bac80904ac66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerAnimator: {fileID: 5539942048803591331}
   symbolAnimator: {fileID: 5539942050548656930}
   controller: {fileID: 5539942050053233089}
   userData:
@@ -526,12 +534,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerObject: {fileID: 2889667353607071116}
+  interpTransfom: {fileID: 1591751138441468896}
   walkSpeed: 64
   walkAcceleration: 128
   groundFriction: 16
   gravity: 40
   jumpForce: 10
   rigidbody: {fileID: 5539942050053233090}
+  velocity: {x: 0, y: 0, z: 0}
 --- !u!143 &5539942050053233090
 CharacterController:
   m_ObjectHideFlags: 0
@@ -545,11 +555,23 @@ CharacterController:
   serializedVersion: 2
   m_Height: 2
   m_Radius: 0.4
-  m_SlopeLimit: 45
+  m_SlopeLimit: 90
   m_StepOffset: 0.5
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &1591751138441468896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5539942050053233091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1914401e7a0d2694988ca4c817c64727, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5539942050548656957
 GameObject:
   m_ObjectHideFlags: 0
@@ -597,6 +619,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -706,6 +729,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1

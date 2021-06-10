@@ -9,6 +9,7 @@ public enum Direction {
 public class PlayerController : MonoBehaviour {
 
     public PlayerGameObject playerObject;
+    public InterpolationTransform interpTransfom;
 
     [Header("Parameters")]
     public float walkSpeed;
@@ -18,10 +19,13 @@ public class PlayerController : MonoBehaviour {
     public float jumpForce;
 
     new public CharacterController rigidbody;
-    private Vector3 velocity;
+    [HideInInspector] public Vector3 velocity;
     [HideInInspector] public Direction visualDirection { get; private set; }
     [HideInInspector] public bool isMoving { get; private set; }
     [HideInInspector] public bool isGrounded { get; private set; }
+    [HideInInspector] public Vector3 lastestDirection { get; private set; }
+
+    private Vector3 noneSelfControlledDirection;
 
     void Start () {
         
@@ -30,9 +34,10 @@ public class PlayerController : MonoBehaviour {
     void FixedUpdate () {
         Vector3 vel = velocity;
 
-        bool doNotMove = ShapeDrawSystem4.inst.isDrawing || !playerObject.isSelfControlled;
+        bool doNotMove = playerObject.playerAnimator.isDrawing;
+        bool doNotExecuteActions = playerObject.playerAnimator.isDrawing || !playerObject.isSelfControlled;
 
-        if(ShapeDrawSystem4.inst.isDrawing)
+        if(playerObject.playerAnimator.isDrawing)
             visualDirection = Direction.Down;
 
         Vector3 direction = Vector3.zero;
@@ -45,6 +50,12 @@ public class PlayerController : MonoBehaviour {
         if(Input.GetKey(KeyCode.D) && !doNotMove)
             direction += Vector3.right;
 
+        if(playerObject.isSelfControlled) {
+            lastestDirection = direction;
+        } else {
+            direction = noneSelfControlledDirection;
+        }
+        
         if(direction.z == -1 && direction.x == 0)
             visualDirection = Direction.Down;
         if(direction.z == 1 && direction.x == 0)
@@ -74,7 +85,7 @@ public class PlayerController : MonoBehaviour {
         } else {
             vel.y = 0f;
         }
-        if(isGrounded && Input.GetKey(KeyCode.Space) && !doNotMove) {
+        if(isGrounded && Input.GetKey(KeyCode.Space) && !doNotExecuteActions) {
             vel += Vector3.up * jumpForce;
         }
 
@@ -85,6 +96,16 @@ public class PlayerController : MonoBehaviour {
         velocity = vel;
 
         rigidbody.Move(velocity * Time.deltaTime);
+    }
+
+    public void SetState (Vector3 position, Vector3 velocity, Vector3 direction) {
+        interpTransfom.SetOffset(transform.position - position);
+
+        rigidbody.enabled = false;
+        transform.position = position;
+        rigidbody.enabled = true;
+        this.velocity = velocity;
+        noneSelfControlledDirection = direction;
     }
 
     private static Vector3 AccelerateVelocity (Vector3 velocity, Vector3 direction, float maxSpeed, float acceleration) {

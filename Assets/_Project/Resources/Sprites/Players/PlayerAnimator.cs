@@ -13,17 +13,18 @@ public class PlayerAnimator : MonoBehaviour {
     private bool wasDrawing;
     private float time;
     private float blinkTime;
+    public bool isDrawing;
 
     const float maxBlinkTime = 4f;
 
     void Update () {
-        if(wasDrawing != ShapeDrawSystem4.inst.isDrawing) {
+        if(wasDrawing != isDrawing) {
             time = 0f;
         } else if(!wasMoving && playerController.isMoving) {
             time = 0f;
         }
 
-        if(ShapeDrawSystem4.inst.isDrawing) {
+        if(isDrawing) {
             Sprite[] summonSprites = playerAnimationAsset.clips[0].frames;
             time = Mathf.Repeat(time, summonSprites.Length);
             renderer.sprite = summonSprites[(int)time];
@@ -55,6 +56,6 @@ public class PlayerAnimator : MonoBehaviour {
         }
 
         wasMoving = playerController.isMoving;
-        wasDrawing = ShapeDrawSystem4.inst.isDrawing;
+        wasDrawing = isDrawing;
     }
 }

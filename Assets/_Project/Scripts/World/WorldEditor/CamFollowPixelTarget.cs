@@ -17,6 +17,16 @@ public class CamFollowPixelTarget : MonoBehaviour {
     private Vector2 anchorPoint;
     private Vector2 anchorUnitTarget;
 
+
+    private void OnEnable () {
+        InterpolationManager.postInterpolation += UpdateTargetMode;
+    }
+
+    private void OnDisable () {
+        InterpolationManager.postInterpolation -= UpdateTargetMode;
+    }
+
+
     void Update () {
         if(!targetMode) {
             if(Input.GetMouseButtonDown(2)) {
@@ -27,10 +37,17 @@ public class CamFollowPixelTarget : MonoBehaviour {
                 Vector2 diff = anchorPoint - new Vector2(Input.mousePosition.x, Input.mousePosition.y);
                 unitTarget = anchorUnitTarget + diff * (1 / (16f * pixelPerfectCamera.pixelRatio));
             }
-        } else if(target != null) {
-            unitTarget = new Vector2(target.transform.position.x, target.transform.position.y * 2f + target.transform.position.z * 1f - height * 2f);
-        }
 
-        transform.position = new Vector3(Mathf.RoundToInt(unitTarget.x * 16) / 16f, height, (Mathf.RoundToInt(unitTarget.y * 16f) / 16f));
+            transform.position = new Vector3(Mathf.RoundToInt(unitTarget.x * 16) / 16f, height, (Mathf.RoundToInt(unitTarget.y * 16f) / 16f));
+        }
+    }
+
+    void UpdateTargetMode () {
+        if(!targetMode && target != null)
+            return;
+
+        unitTarget = new Vector2(target.transform.position.x, target.transform.position.y * 2f + target.transform.position.z * 1f - height * 2f);
+        transform.position = new Vector3(unitTarget.x, height, unitTarget.y);//new Vector3(Mathf.RoundToInt(unitTarget.x * 16) / 16f, height, (Mathf.RoundToInt(unitTarget.y * 16f) / 16f));
+        //
     }
 }
