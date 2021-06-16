@@ -29,6 +29,15 @@ public class EnnemyNavigator : MonoBehaviour {
     private Rigidbody rb;
     private Enemies enemy;
 
+    public Vector3 velocity {
+        get {
+            return rb.velocity;
+        }
+        set {
+            rb.velocity = value;
+        }
+    }
+
     private void Awake () {
         rb = GetComponent<Rigidbody>();
         enemy = GetComponent<Enemies>();
@@ -45,6 +54,7 @@ public class EnnemyNavigator : MonoBehaviour {
         }
         if(!HasGroundNearby()) {
             enemyNavigatorState = EnemyNavigatorState.Idle;
+            RunSimulationWithFriction();
             return;
         }
         if(target == null) {
@@ -58,7 +68,10 @@ public class EnnemyNavigator : MonoBehaviour {
             TryChangeTarget();
         }
         if(distSq > maxFollowDistance * maxFollowDistance) {
-            target = null;
+            if(NetworkAssistant.IsServer) {
+                target = null;
+                WorldSync.SetEnemyTarget(enemy.id, -1);
+            }
             RunSimulationWithFriction();
             return;
         }
@@ -119,13 +132,27 @@ public class EnnemyNavigator : MonoBehaviour {
         }
     }
 
+    public int SetFirstTarget () {
+        if(!NetworkAssistant.IsServer)
+            return -1;
+
+        PlayerGameObject closestPlayer = EnemyManager.GetClosestPlayer(transform.position, out float distance);
+        target = closestPlayer.transform;
+        return (int)closestPlayer.clientId;
+    }
+
     float timeOfLastTargetChange;
     void TryChangeTarget () {
+        if(!NetworkAssistant.IsServer)
+            return;
+
         float timeSinceLastTargetSwitch = Time.fixedTime - timeOfLastTargetChange;
         if(timeSinceLastTargetSwitch > maxTimeSwitchTarget) {
             timeOfLastTargetChange = Time.fixedTime;
 
-            target = EnemyManager.GetClosestPlayer(transform.position, out float distance).transform;
+            PlayerGameObject closestPlayer = EnemyManager.GetClosestPlayer(transform.position, out float distance);
+            target = closestPlayer.transform;
+            WorldSync.SetEnemyTarget(enemy.id, (int)closestPlayer.clientId);
         }
     }
 
@@ -158,12 +185,12 @@ public class EnnemyNavigator : MonoBehaviour {
         Vector3 vel = rb.velocity;
         vel.x *= (1f - Time.deltaTime * groundFriction);
         vel.z *= (1f - Time.deltaTime * groundFriction);
-        vel += Vector3.down * 5f * Time.deltaTime; // Extra Gravity
+        vel += Vector3.down * 25f * Time.deltaTime; // Extra Gravity
         rb.velocity = vel;
     }
 
     public void ApplyImpulse (Vector3 impulse) {
-        rb.velocity += impulse;
+        rb.velocity += impulse * (1f/rb.mass);
     }
 }
 

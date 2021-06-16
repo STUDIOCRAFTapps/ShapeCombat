@@ -62,14 +62,14 @@ public class PathfindingManager : MonoBehaviour {
         // Prepare job data
         PathfindingJob pathfindingJobData = new PathfindingJob() {
             chunkSize = World.inst.chunkSize,
-            _path = new NativeArray<float3>(maxPathLength, Allocator.TempJob),
-            _results = new NativeArray<int>(2, Allocator.TempJob),
+            _path = new NativeArray<float3>(maxPathLength, Allocator.Persistent),
+            _results = new NativeArray<int>(2, Allocator.Persistent),
             startPos = start,
             endPos = end,
             _chunkDataNative = World.inst.chunkDataNative,
 
-            _closed = new NativeHashMap<int3, NodeCost>(maxClosedCellsLength, Allocator.TempJob),
-            _open = new NativeBinaryHeap<NodeCost>(maxOpenedCellsLength, Allocator.TempJob),
+            _closed = new NativeHashMap<int3, NodeCost>(maxClosedCellsLength, Allocator.Persistent),
+            _open = new NativeBinaryHeap<NodeCost>(maxOpenedCellsLength, Allocator.Persistent),
         };
 
         // Prepare handle so proper function can be called once job is finished

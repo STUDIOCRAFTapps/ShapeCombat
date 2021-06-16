@@ -7,6 +7,7 @@ public class EnemyAnimator : MonoBehaviour {
     public float framesPerSecond = 15f;
     public EnemyAnimationAsset animationAsset;
     new public SpriteRenderer renderer;
+    public Enemies enemy;
 
     private int loopAnimationId;
     private float time;
@@ -50,6 +51,19 @@ public class EnemyAnimator : MonoBehaviour {
             renderer.color = Color.white;
         } else {
             renderer.color = Color.clear;
+        }
+
+        if(isDying) {
+            if(timeDeath < animationAsset.deathAnimation.Length) {
+                timeDeath += Time.deltaTime * framesPerSecond;
+                
+                if(timeDeath >= animationAsset.deathAnimation.Length) {
+                    enemy.OnDeathAnimationDone();
+                } else {
+                    renderer.sprite = animationAsset.deathAnimation[(int)timeDeath];
+                }
+            }
+            return;
         }
 
         if(singleAnimationId != -1) {

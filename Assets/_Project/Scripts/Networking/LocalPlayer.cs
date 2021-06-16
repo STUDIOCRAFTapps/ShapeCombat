@@ -75,6 +75,13 @@ public class LocalPlayer : NetworkBehaviour {
         playerAddedToLobby = Lobby.RegisterLocalPlayer(this);
     }
 
+    private void Update () {
+        if(!IsOwner)
+            return;
+        if(Input.GetKeyDown(KeyCode.K))
+            WorldSync.SpawnEnemySync(playerObject.transform.position);
+    }
+
     private void FixedUpdate () {
         if(!playerAddedToLobby) {
             playerAddedToLobby = Lobby.RegisterLocalPlayer(this);
@@ -145,8 +152,6 @@ public class LocalPlayer : NetworkBehaviour {
     }
     #endregion
 
-
-
     #region Symbol
     void OnExecuteSymbolLocal (Symbols symbol) {
         if(playerObject == null)
@@ -158,18 +163,25 @@ public class LocalPlayer : NetworkBehaviour {
 
     [ServerRpc(Delivery = RpcDelivery.Reliable)]
     private void SyncSymbolServerRpc (byte symbolId, ServerRpcParams rpcParams = default) {
-        SyncSymbolClientRpc(symbolId, new ClientRpcParams() {
+        Vector2 playerPosXZ = new Vector2(playerObject.transform.position.x, playerObject.transform.position.z);
+        SyncSymbolClientRpc(symbolId, playerPosXZ, new ClientRpcParams() {
             Receive = new ClientRpcReceiveParams() {
                 UpdateStage = NetworkUpdateStage.PreUpdate
             }
         });
+    }
 
-        Vector2 playerPosXZ = new Vector2(playerObject.transform.position.x, playerObject.transform.position.z);
-        float knockbackConstXZ = 30f;
-        float knockbackConstY = 10f;
+    const float knockbackConstXZ = 25f;
+    const float knockbackConstY = 8f;
+    [ClientRpc(Delivery = RpcDelivery.Reliable)]
+    private void SyncSymbolClientRpc (byte symbolId, Vector2 playerPosXZ, ClientRpcParams clientRpcParams = default) {
+        if(!IsOwner && playerObject != null) {
+            playerObject.symbolAnimator.OnExecuteSymbol((Symbols)symbolId);
+        }
 
+        // The damage operations MUST be executed in order on all client/server. -- Find a way to ensure these damage enemy messages are send in order
         EnemyManager.ForEachCloseEnemy((e) => {
-        
+
             if(e.TryDamage((Symbols)symbolId)) {
                 Vector2 impactDirection = -(playerPosXZ - new Vector2(e.transform.position.x, e.transform.position.z)).normalized;
 
@@ -177,16 +189,6 @@ public class LocalPlayer : NetworkBehaviour {
             }
 
         }, playerPosXZ, 30f);
-    }
-
-    [ClientRpc(Delivery = RpcDelivery.Unreliable)]
-    private void SyncSymbolClientRpc (byte symbolId, ClientRpcParams clientRpcParams = default) {
-        if(IsOwner)
-            return;
-        if(playerObject == null)
-            return;
-
-        playerObject.symbolAnimator.OnExecuteSymbol((Symbols)symbolId);
     }
 
     private void SymbolDrawStateEvent (bool oldState, bool newState) {

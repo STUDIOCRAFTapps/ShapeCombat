@@ -94,10 +94,10 @@ public class SymbolUnitGroup {
         float3 avg = float3.zero;
         for(int i = 0; i < enemies.Count; i++) {
             avg += new float3(enemies[i].transform.position.x, 0f, enemies[i].transform.position.z);
-            avg.y = math.max(avg.y, enemies[i].transform.position.y);
+            avg.y = math.max(avg.y, enemies[i].transform.position.y + enemies[i].displayHeight);
         }
         avg = new float3(avg.x / enemies.Count, avg.y, avg.z / enemies.Count);
 
-        symbolUnit.transform.position = avg + math.up() * 1.5f;
+        symbolUnit.transform.position = avg ;
     }
 }

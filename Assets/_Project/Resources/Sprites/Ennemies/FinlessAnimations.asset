@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fdcbece60dc8e04c811ab742fa3be8b, type: 3}
+  m_Name: FinlessAnimations
+  m_EditorClassIdentifier: 
+  isFirstRepeatClipBlinking: 0
+  repeatClips:
+  - key: Idle
+    frames:
+    - {fileID: 7399733776838748040, guid: 825c8c8235fad3f41b68396d9b753300, type: 3}
+    - {fileID: 4584683055360095203, guid: 825c8c8235fad3f41b68396d9b753300, type: 3}
+    - {fileID: 1544032334411349013, guid: 825c8c8235fad3f41b68396d9b753300, type: 3}
+    - {fileID: -8191451106721913645, guid: 825c8c8235fad3f41b68396d9b753300, type: 3}
+    customFramePerSecond: 15
+  - key: Walk
+    frames:
+    - {fileID: 5660179934757883525, guid: 825c8c8235fad3f41b68396d9b753300, type: 3}
+    - {fileID: -8285723538087942525, guid: 825c8c8235fad3f41b68396d9b753300, type: 3}
+    - {fileID: -3231530372471321038, guid: 825c8c8235fad3f41b68396d9b753300, type: 3}
+    - {fileID: -5672368973527033588, guid: 825c8c8235fad3f41b68396d9b753300, type: 3}
+    - {fileID: -100574384872566935, guid: 825c8c8235fad3f41b68396d9b753300, type: 3}
+    customFramePerSecond: 15
+  actionClips:
+  - key: Attack
+    frames:
+    - {fileID: -1291934042656503530, guid: 825c8c8235fad3f41b68396d9b753300, type: 3}
+    - {fileID: -1416144555730689067, guid: 825c8c8235fad3f41b68396d9b753300, type: 3}
+    - {fileID: 816067592304203687, guid: 825c8c8235fad3f41b68396d9b753300, type: 3}
+    - {fileID: -948145804463476970, guid: 825c8c8235fad3f41b68396d9b753300, type: 3}
+    customFramePerSecond: 10
+  deathAnimation:
+  - {fileID: 3292938042749007063, guid: 825c8c8235fad3f41b68396d9b753300, type: 3}
+  - {fileID: 8338842310828007160, guid: 825c8c8235fad3f41b68396d9b753300, type: 3}
+  - {fileID: 4054626191054124443, guid: 825c8c8235fad3f41b68396d9b753300, type: 3}
+  - {fileID: -4257788684984175543, guid: 825c8c8235fad3f41b68396d9b753300, type: 3}
+  - {fileID: 5051392617454519269, guid: 825c8c8235fad3f41b68396d9b753300, type: 3}

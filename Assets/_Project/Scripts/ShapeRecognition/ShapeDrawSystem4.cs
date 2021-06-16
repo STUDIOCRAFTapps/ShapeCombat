@@ -49,6 +49,7 @@ public class ShapeDrawSystem4 : MonoBehaviour {
     public float minLineDistance = 10f;
     public float maxLineDistance = 25f;
     public float minLineRatio = 0.3f;
+    public float maxHatRatio = 0.5f;
     public float minCircleStartEndDistance;
     public float maxCircleStartEndDistance;
     public float minHearthStartEndDistance;
@@ -374,17 +375,18 @@ public class ShapeDrawSystem4 : MonoBehaviour {
     DrawingResult Shape_TopHat () { // ^
         float score = 0f;
 
+        float ratio = (xYRatio < maxHatRatio) ? 1f : 0f;
         if(endPosition.x > startPosition.x) { // Left-Right
             if(maxYBoundReachPos.y > startPosition.y && endPosition.x > maxYBoundReachPos.x && maxYBoundReachPos.x > startPosition.x) { // Is past top point?
                 float topBottomValue = Mathf.InverseLerp(maxBound.y, minBound.y, endPosition.y);
                 maxTopHatValue = Mathf.Max(maxTopHatValue, Mathf.Clamp01(topBottomValue * 1.5f - 0.5f));
-                score = maxTopHatValue;
+                score = maxTopHatValue * ratio;
             }
         } else { // Right-Left
             if(maxYBoundReachPos.y > startPosition.y && endPosition.x < maxYBoundReachPos.x && maxYBoundReachPos.x < startPosition.x) { // Is past top point?
                 float topBottomValue = Mathf.InverseLerp(maxBound.y, minBound.y, endPosition.y);
                 maxTopHatValue = Mathf.Max(maxTopHatValue, Mathf.Clamp01(topBottomValue * 1.5f - 0.5f));
-                score = maxTopHatValue;
+                score = maxTopHatValue * ratio;
             }
         }
 
@@ -394,18 +396,19 @@ public class ShapeDrawSystem4 : MonoBehaviour {
     // Priority: 7
     DrawingResult Shape_LeftHat () { // <
         float score = 0f;
-        
+
+        float ratio = (yXRatio < maxHatRatio) ? 1f : 0f;
         if(endPosition.y < startPosition.y) { // Top-Bottom
             if(minXBoundReachPos.x < startPosition.x && endPosition.y < minXBoundReachPos.y && minXBoundReachPos.y < startPosition.y) { // Is past top point?
                 float leftRightValue = Mathf.InverseLerp(minBound.x, maxBound.x, endPosition.x);
                 maxLeftHatValue = Mathf.Max(maxLeftHatValue, Mathf.Clamp01(leftRightValue * 1.5f - 0.5f));
-                score = maxLeftHatValue;
+                score = maxLeftHatValue * ratio;
             }
         } else { // Bottom-Top
             if(minXBoundReachPos.x < startPosition.x && endPosition.y > minXBoundReachPos.y && minXBoundReachPos.y > startPosition.y) { // Is past top point?
                 float leftRightValue = Mathf.InverseLerp(minBound.x, maxBound.x, endPosition.x);
                 maxLeftHatValue = Mathf.Max(maxLeftHatValue, Mathf.Clamp01(leftRightValue * 1.5f - 0.5f));
-                score = maxLeftHatValue;
+                score = maxLeftHatValue * ratio;
             }
         }
 
@@ -416,18 +419,18 @@ public class ShapeDrawSystem4 : MonoBehaviour {
     DrawingResult Shape_RightHat () { // >
         float score = 0f;
 
-
+        float ratio = (yXRatio < maxHatRatio) ? 1f : 0f;
         if(endPosition.y < startPosition.y) { // Top-Bottom
             if(maxXBoundReachPos.x > startPosition.x && endPosition.y < maxXBoundReachPos.y && maxXBoundReachPos.y < startPosition.y) { // Is past top point?
                 float rightLeftValue = Mathf.InverseLerp(maxBound.x, minBound.x, endPosition.x);
                 maxRightHatValue = Mathf.Max(maxRightHatValue, Mathf.Clamp01(rightLeftValue * 1.5f - 0.5f));
-                score = maxRightHatValue;
+                score = maxRightHatValue * ratio;
             }
         } else { // Bottom-Top
             if(maxXBoundReachPos.x > startPosition.x && endPosition.y > maxXBoundReachPos.y && maxXBoundReachPos.y > startPosition.y) { // Is past top point?
                 float rightLeftValue = Mathf.InverseLerp(maxBound.x, minBound.x, endPosition.x);
                 maxRightHatValue = Mathf.Max(maxRightHatValue, Mathf.Clamp01(rightLeftValue * 1.5f - 0.5f));
-                score = maxRightHatValue;
+                score = maxRightHatValue * ratio;
             }
         }
 
@@ -437,18 +440,19 @@ public class ShapeDrawSystem4 : MonoBehaviour {
     // Priority: 5
     DrawingResult Shape_BottomHat () { // v
         float score = 0f;
-        
+
+        float ratio = (xYRatio < maxHatRatio) ? 1f : 0f;
         if(endPosition.x > startPosition.x) { // Left-Right
             if(minYBoundReachPos.y < startPosition.y && endPosition.x > minYBoundReachPos.x && minYBoundReachPos.x > startPosition.x) { // Is past top point?
                 float bottomTopValue = Mathf.InverseLerp(minBound.y, maxBound.y, endPosition.y);
                 maxBottomHatValue = Mathf.Max(maxBottomHatValue, Mathf.Clamp01(bottomTopValue * 1.5f - 0.5f));
-                score = maxBottomHatValue;
+                score = maxBottomHatValue * ratio;
             }
         } else { // Right-Left
             if(minYBoundReachPos.y < startPosition.y && endPosition.x < minYBoundReachPos.x && minYBoundReachPos.x < startPosition.x) { // Is past top point?
                 float bottomTopValue = Mathf.InverseLerp(minBound.y, maxBound.y, endPosition.y);
                 maxBottomHatValue = Mathf.Max(maxBottomHatValue, Mathf.Clamp01(bottomTopValue * 1.5f - 0.5f));
-                score = maxBottomHatValue;
+                score = maxBottomHatValue * ratio;
             }
         }
 
@@ -529,15 +533,16 @@ public class ShapeDrawSystem4 : MonoBehaviour {
         
         if(corners <= 3) {
             // Top to bottom
+            float ratio = (xYRatio < maxHatRatio) ? 1f : 0f;
             if((startPosition.y > minXLimitReachPos.y && startPosition.y > maxXLimitReachPos.y) && (endPosition.y < minXLimitReachPos.y && endPosition.y < maxXLimitReachPos.y)) { // Makes sure all points are in order
                 if(minXLimitReachPos.x != startPosition.x && maxXLimitReachPos.x != startPosition.x) { // Makes sure there's some zigzag going on
-                    score = 1f;
+                    score = ratio;
                 }
             }
             // Bottom to top
             if((startPosition.y < minXLimitReachPos.y && startPosition.y < maxXLimitReachPos.y) && (endPosition.y > minXLimitReachPos.y && endPosition.y > maxXLimitReachPos.y)) { // Makes sure all points are in order
                 if(minXLimitReachPos.x != startPosition.x && maxXLimitReachPos.x != startPosition.x) { // Makes sure there's some zigzag going on
-                    score = 1f;
+                    score = ratio;
                 }
             }
             outlineRenderer.positionCount = 4;

@@ -506,7 +506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa26525a62fd969489296efd1a785aac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offsetSmooth: 0.2
+  offsetSmooth: 0.1
   offsetSpeed: 30
   timeScale: 1
 --- !u!1 &484824279
@@ -2360,6 +2360,8 @@ MonoBehaviour:
     - Prefab: {fileID: 4436760188390448017, guid: d4fc611bc5fc672479ab8ef5f9f612fa, type: 3}
       PlayerPrefab: 1
     - Prefab: {fileID: 2786795420598609753, guid: c7a95d01e4e0af8408cf1885094ef34e, type: 3}
+      PlayerPrefab: 0
+    - Prefab: {fileID: 3663112314930643248, guid: 6ad22144a81b28640a32aab045d734b5, type: 3}
       PlayerPrefab: 0
     PlayerPrefabHash:
       id: 0

@@ -5,25 +5,38 @@ using Unity.Mathematics;
 
 public class Enemies : MonoBehaviour {
 
-    public ulong id { get; private set; }
+    public float displayHeight = 1.5f;
+    public ushort id { get; private set; }
     public ulong symbolHash { get; private set; }
     public int symbolUnitGroup;
+    private byte framesUntilPosUpdate;
+    public bool DoUpdatePos { get { return true/*framesUntilPosUpdate >= 25*/; } }
 
     public EnnemyNavigator navigator { get; private set; }
+    public InterpolationTransform interpolationTransform { get; private set; }
     public EnemyAnimator animator { get; private set; }
 
     public List<Symbols> keySymbols;
 
-    private void Awake () {
+    public void Init (ushort id) {
+        this.id = id;
+
         keySymbols = new List<Symbols>();
         navigator = GetComponent<EnnemyNavigator>();
         animator = GetComponent<EnemyAnimator>();
+        interpolationTransform = GetComponent<InterpolationTransform>();
+        animator.enemy = this;
 
         keySymbols.Add(Symbols.VLine);
         keySymbols.Add(Symbols.HLine);
         keySymbols.Add(Symbols.VLine);
         keySymbols.Add(Symbols.BottomHat);
         keySymbols.Add(Symbols.TopHat);
+
+        EnemyManager.RegisterEnemy(this);
+        interpolationTransform.CopyState();
+
+        OnSpawn();
     }
 
     public void CalculateSymbolHash () {
@@ -37,19 +50,26 @@ public class Enemies : MonoBehaviour {
         }
         return hash;
     }
-
-    private void Start () {
-        EnemyManager.RegisterEnemy(this);
-        OnSpawn();
-    }
+    
 
     private void OnDestroy () {
         EnemyManager.UnregisterEnemy(this);
     }
 
-    private void Update () {
+    public void OnUpdate () {
         UpdateVisuals();
     }
+
+    public void OnFixedUpdate () {
+        if(framesUntilPosUpdate < 25) {
+            framesUntilPosUpdate++;
+        }
+    }
+
+    public void ResetPosUpdate () {
+        framesUntilPosUpdate = 0;
+    }
+
 
 
     public void ApplyImpulse (Vector3 impulse) {
@@ -62,8 +82,10 @@ public class Enemies : MonoBehaviour {
 
         if(symbol == keySymbols[0]) {
             keySymbols.RemoveAt(0);
-            if(keySymbols.Count == 0)
+            if(keySymbols.Count == 0) {
                 OnDeath();
+                return true;
+            }
         } else {
             return false;
         }
@@ -73,12 +95,17 @@ public class Enemies : MonoBehaviour {
     }
 
     public virtual void OnDamaged () {
-        animator.Flash(0.1f);
+        animator.Flash(0.2f);
     }
 
     public virtual void OnDeath () {
         navigator.isFreezed = true;
         animator.PlayDeathAnimation();
+    }
+
+    public void OnDeathAnimationDone () {
+        EnemyManager.PlayParticle(transform.position);
+        Destroy(gameObject);
     }
 
     public virtual void OnSpawn () {

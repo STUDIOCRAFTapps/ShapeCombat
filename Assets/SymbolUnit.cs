@@ -19,7 +19,7 @@ public class SymbolUnit : MonoBehaviour {
             symbolsRoots.Add(Instantiate(symbolsPrefab, transform));
         }
         for(int i = 0; i < symbolsList.Count; i++) {
-            if(symbolsRoots[i].gameObject.activeSelf)
+            if(!symbolsRoots[i].gameObject.activeSelf)
                 symbolsRoots[i].gameObject.SetActive(true);
             symbolsRoots[i].SetSprites(SymbolUtility.GetSymbolSprite(symbolsList[i], SymbolSpriteSize.Small));
             symbolsRoots[i].transform.localPosition = (symbolsList.Count * -0.25f + i * 0.5f + 0.25f) * Vector3.right;

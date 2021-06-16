@@ -7,12 +7,17 @@ using MLAPI.Messaging;
 
 public class Lobby : NetworkBehaviour {
 
+    [Header("Prefab")]
+    public WorldSync worldSyncPrefab;
+
     public Dictionary<ulong, LocalPlayer> localPlayers { private set; get; }
     private bool wasInitied;
 
     public static bool DoesLobbyExist { get { return inst != null; } }
     public static Dictionary<ulong, LocalPlayer> PlayerDictionary { get { return inst.localPlayers; } }
 
+    private WorldSync worldSync;
+    
     #region Init Lobby
     private static Lobby inst;
     public void Awake () {
@@ -69,6 +74,12 @@ public class Lobby : NetworkBehaviour {
     #endregion
 
     #region Match
+    public static bool InMatch {
+        get {
+            return inst.worldSync != null;
+        }
+    }
+
     public static void StartMatch () {
         inst.StartMatchClientRPC();
     }
@@ -98,6 +109,11 @@ public class Lobby : NetworkBehaviour {
         if(scene.name == "Main") {
             foreach(KeyValuePair<ulong, LocalPlayer> kvp in localPlayers) {
                 kvp.Value.OnStartMatch();
+            }
+
+            if(IsServer) {
+                worldSync = Instantiate(worldSyncPrefab);
+                worldSync.GetComponent<NetworkObject>().Spawn(null, true);
             }
         }
     }
