@@ -11384,7 +11384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 449148067}
-  buddeyePrefab: {fileID: 8916574133870372358, guid: c23b8f0a8da822c4a83a0f49fed1f235, type: 3}
+  buddeyePrefab: {fileID: 1732688735675706963, guid: 36cdb8d95f9ba95419cfee174cc053e7, type: 3}
   smallExplosion: {fileID: 515071663}
 --- !u!1 &543074731
 GameObject:

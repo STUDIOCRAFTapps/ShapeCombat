@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fdcbece60dc8e04c811ab742fa3be8b, type: 3}
+  m_Name: SplitterfishAnimation
+  m_EditorClassIdentifier: 
+  isFirstRepeatClipBlinking: 0
+  repeatClips:
+  - key: Rolling
+    frames:
+    - {fileID: 212790235723420530, guid: 2625ba1bb594d4d45bbb804209df0173, type: 3}
+    - {fileID: -6657176345590904298, guid: 2625ba1bb594d4d45bbb804209df0173, type: 3}
+    - {fileID: 3224978018142706817, guid: 2625ba1bb594d4d45bbb804209df0173, type: 3}
+    - {fileID: 6035227870188187647, guid: 2625ba1bb594d4d45bbb804209df0173, type: 3}
+    - {fileID: -8470446188036766271, guid: 2625ba1bb594d4d45bbb804209df0173, type: 3}
+    - {fileID: 8315109406585113062, guid: 2625ba1bb594d4d45bbb804209df0173, type: 3}
+    - {fileID: -3497123414256908233, guid: 2625ba1bb594d4d45bbb804209df0173, type: 3}
+    - {fileID: -2631053025659280823, guid: 2625ba1bb594d4d45bbb804209df0173, type: 3}
+    customFramePerSecond: 15
+  actionClips: []
+  deathAnimation:
+  - {fileID: 1304199770208246981, guid: 2625ba1bb594d4d45bbb804209df0173, type: 3}
+  - {fileID: -3371219726863310626, guid: 2625ba1bb594d4d45bbb804209df0173, type: 3}
+  - {fileID: 471473006835232425, guid: 2625ba1bb594d4d45bbb804209df0173, type: 3}
+  - {fileID: -5055610311745217900, guid: 2625ba1bb594d4d45bbb804209df0173, type: 3}

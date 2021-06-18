@@ -18,6 +18,7 @@ public class EnnemyNavigator : MonoBehaviour {
 
     public EnemyNavigatorState enemyNavigatorState { get; private set; }
     public bool isGoingRight { get; private set; }
+    public bool isGrounded { get; private set; }
 
     private NavigatorLogicState navigatorState = NavigatorLogicState.WaitingToSendRequest;
     private float3 pointToFollow;
@@ -45,6 +46,7 @@ public class EnnemyNavigator : MonoBehaviour {
 
     private void FixedUpdate () {
 
+        isGrounded = false;
 
         // Immediate turn offs
         if(isFreezed) {
@@ -96,7 +98,7 @@ public class EnnemyNavigator : MonoBehaviour {
 
         // Path navigation
         Vector3 vel = rb.velocity;
-        bool isGrounded = IsGrounded();
+        isGrounded = IsGrounded();
 
         if(navigatorState == NavigatorLogicState.FollowingPoint && distSq > 1.5f * 1.5f) {
             Vector3 nextPointDelta = (Vector3.MoveTowards(transform.position, pointToFollow + math.up() * height, maxMoveStepPerSecond * Time.deltaTime) - transform.position);

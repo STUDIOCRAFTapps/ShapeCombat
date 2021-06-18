@@ -30,7 +30,7 @@ public class EnemyManager : MonoBehaviour {
 
     private void FixedUpdate () {
         foreach(KeyValuePair<ushort, Enemies> kvp in inst.enemies) {
-            kvp.Value.OnFixedUpdate();
+            kvp.Value.Internal_OnFixedUpdate();
         }
     }
 

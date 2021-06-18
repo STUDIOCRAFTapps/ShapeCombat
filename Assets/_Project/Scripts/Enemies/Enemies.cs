@@ -60,10 +60,13 @@ public class Enemies : MonoBehaviour {
         UpdateVisuals();
     }
 
-    public void OnFixedUpdate () {
+    public virtual void OnFixedUpdate () {}
+
+    public void Internal_OnFixedUpdate () {
         if(framesUntilPosUpdate < 25) {
             framesUntilPosUpdate++;
         }
+        OnFixedUpdate();
     }
 
     public void ResetPosUpdate () {

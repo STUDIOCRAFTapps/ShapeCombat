@@ -643,3 +643,674 @@ Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
 - Completed reload, in  7.268 seconds
 Platform modules already initialized, skipping
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.63 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3457 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 169.0 MB.
+System memory in use after: 169.2 MB.
+
+Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 4455.
+Total: 2.924100 ms (FindLiveObjects: 0.283900 ms CreateObjectMapping: 0.157300 ms MarkObjects: 2.397500 ms  DeleteObjects: 0.084600 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 86219.280684 seconds.
+  path: Assets/_Project/Resources/Sprites/Ennemies/FinlessAnimations.asset
+  artifactKey: Guid(50ee58571aa7dfc4fae172a9126f830e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Resources/Sprites/Ennemies/FinlessAnimations.asset using Guid(50ee58571aa7dfc4fae172a9126f830e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9ce5b3235e3742d810e20be1a63e0b2f') in 0.494150 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 72.835103 seconds.
+  path: Assets/_Project/Resources/Sprites/Ennemies/HectopusAnimation.asset
+  artifactKey: Guid(4b1ed0caf1389db449b41a734941f9c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Resources/Sprites/Ennemies/HectopusAnimation.asset using Guid(4b1ed0caf1389db449b41a734941f9c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7fc305416d30c5459a490376f0104817') in 0.008535 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 241.893151 seconds.
+  path: Assets/_Project/Resources/Prefabs/Hectopus.prefab
+  artifactKey: Guid(b36e5d53ecb583b41bd9b3098c816cab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Resources/Prefabs/Hectopus.prefab using Guid(b36e5d53ecb583b41bd9b3098c816cab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2dea08d8c4f9c506d90da348cf1f9ac2') in 0.402367 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.105661 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.80 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.711 seconds
+Platform modules already initialized, skipping
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.95 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3457 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 169.1 MB.
+System memory in use after: 169.4 MB.
+
+Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 4497.
+Total: 4.560300 ms (FindLiveObjects: 0.480700 ms CreateObjectMapping: 0.270600 ms MarkObjects: 3.542400 ms  DeleteObjects: 0.265500 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 64797.368964 seconds.
+  path: Assets/_Project/Scripts/Enemies/Hectopus.cs
+  artifactKey: Guid(d0f3f2d1461a0344d96367ab7dc148b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Scripts/Enemies/Hectopus.cs using Guid(d0f3f2d1461a0344d96367ab7dc148b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cc4a2dd2192ed3f1706fc732a2326cd0') in 0.016640 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 326.489328 seconds.
+  path: Assets/_Project/Scripts/Enemies/Hectopus.cs
+  artifactKey: Guid(d0f3f2d1461a0344d96367ab7dc148b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Scripts/Enemies/Hectopus.cs using Guid(d0f3f2d1461a0344d96367ab7dc148b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '21ade327cc5f2dcb5dba6f387280cd2e') in 0.002969 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.089683 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.62 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.191 seconds
+Platform modules already initialized, skipping
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.63 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3458 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 169.1 MB.
+System memory in use after: 169.3 MB.
+
+Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 4504.
+Total: 3.345000 ms (FindLiveObjects: 0.294300 ms CreateObjectMapping: 0.172400 ms MarkObjects: 2.831200 ms  DeleteObjects: 0.046300 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 164.088200 seconds.
+  path: Assets/_Project/Scripts/Enemies/Hectopus.cs
+  artifactKey: Guid(d0f3f2d1461a0344d96367ab7dc148b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Scripts/Enemies/Hectopus.cs using Guid(d0f3f2d1461a0344d96367ab7dc148b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c9995571365190333e474e7296158c93') in 0.009615 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.007215 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.79 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.998 seconds
+Platform modules already initialized, skipping
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.62 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3458 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 169.1 MB.
+System memory in use after: 169.3 MB.
+
+Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 4510.
+Total: 2.996100 ms (FindLiveObjects: 0.302200 ms CreateObjectMapping: 0.192000 ms MarkObjects: 2.434200 ms  DeleteObjects: 0.067200 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 1000.459115 seconds.
+  path: Assets/_Project/Scripts/Enemies/Hectopus.cs
+  artifactKey: Guid(d0f3f2d1461a0344d96367ab7dc148b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Scripts/Enemies/Hectopus.cs using Guid(d0f3f2d1461a0344d96367ab7dc148b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ca3ce6a7017783a597704122442cb87b') in 0.005773 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005955 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.64 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.964 seconds
+Platform modules already initialized, skipping
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.76 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3458 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 169.1 MB.
+System memory in use after: 169.3 MB.
+
+Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 4516.
+Total: 3.390200 ms (FindLiveObjects: 0.314500 ms CreateObjectMapping: 0.170000 ms MarkObjects: 2.758400 ms  DeleteObjects: 0.146700 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 43.999786 seconds.
+  path: Assets/_Project/Resources/Prefabs/Hectopus.prefab
+  artifactKey: Guid(b36e5d53ecb583b41bd9b3098c816cab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Resources/Prefabs/Hectopus.prefab using Guid(b36e5d53ecb583b41bd9b3098c816cab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2eb2f4c15c217cce1613ef53cc97f25c') in 0.261649 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.006884 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.90 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.275 seconds
+Platform modules already initialized, skipping
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.74 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3458 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 169.2 MB.
+System memory in use after: 169.5 MB.
+
+Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 4558.
+Total: 4.423500 ms (FindLiveObjects: 0.521800 ms CreateObjectMapping: 0.275200 ms MarkObjects: 3.486400 ms  DeleteObjects: 0.138900 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 20.422100 seconds.
+  path: Assets/_Project/Resources/Prefabs/Hectopus.prefab
+  artifactKey: Guid(b36e5d53ecb583b41bd9b3098c816cab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Resources/Prefabs/Hectopus.prefab using Guid(b36e5d53ecb583b41bd9b3098c816cab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '170b12fc409fc753e6bdfa9a807684e2') in 0.181573 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005346 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.72 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.966 seconds
+Platform modules already initialized, skipping
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.63 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3458 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 169.3 MB.
+System memory in use after: 169.6 MB.
+
+Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 4600.
+Total: 3.160500 ms (FindLiveObjects: 0.299300 ms CreateObjectMapping: 0.173800 ms MarkObjects: 2.638100 ms  DeleteObjects: 0.048700 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 127.145784 seconds.
+  path: Assets/_Project/Resources/Prefabs/Hectopus.prefab
+  artifactKey: Guid(b36e5d53ecb583b41bd9b3098c816cab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Resources/Prefabs/Hectopus.prefab using Guid(b36e5d53ecb583b41bd9b3098c816cab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '20839b13452bf600fa776a2f0249c8e1') in 0.139511 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.007018 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.88 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.235 seconds
+Platform modules already initialized, skipping
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.80 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3458 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 169.4 MB.
+System memory in use after: 169.6 MB.
+
+Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 4642.
+Total: 4.372600 ms (FindLiveObjects: 0.514900 ms CreateObjectMapping: 0.236600 ms MarkObjects: 3.458400 ms  DeleteObjects: 0.161500 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 13.224418 seconds.
+  path: Assets/_Project/Resources/Prefabs/Hectopus.prefab
+  artifactKey: Guid(b36e5d53ecb583b41bd9b3098c816cab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Resources/Prefabs/Hectopus.prefab using Guid(b36e5d53ecb583b41bd9b3098c816cab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7651c3df4fca1fe8f5d78c58fab39b3e') in 0.175520 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 2.910497 seconds.
+  path: Assets/_Project/Resources/Prefabs/Hectopus.prefab
+  artifactKey: Guid(b36e5d53ecb583b41bd9b3098c816cab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Resources/Prefabs/Hectopus.prefab using Guid(b36e5d53ecb583b41bd9b3098c816cab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'afadfa0a7c0f131519c6954c8c58ae27') in 0.009863 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.004986 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.72 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.952 seconds
+Platform modules already initialized, skipping
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.81 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3458 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 169.4 MB.
+System memory in use after: 169.7 MB.
+
+Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 4684.
+Total: 3.023100 ms (FindLiveObjects: 0.319900 ms CreateObjectMapping: 0.173500 ms MarkObjects: 2.498300 ms  DeleteObjects: 0.030800 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.006061 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.98 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.265 seconds
+Platform modules already initialized, skipping
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.93 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3458 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 169.4 MB.
+System memory in use after: 169.7 MB.
+
+Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 4690.
+Total: 4.193700 ms (FindLiveObjects: 0.560400 ms CreateObjectMapping: 0.251000 ms MarkObjects: 3.338700 ms  DeleteObjects: 0.042600 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 146.234837 seconds.
+  path: Assets/_Project/Resources/Prefabs/Hectopus.prefab
+  artifactKey: Guid(b36e5d53ecb583b41bd9b3098c816cab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Resources/Prefabs/Hectopus.prefab using Guid(b36e5d53ecb583b41bd9b3098c816cab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c8d3e5bff39a836803c22d071117fd14') in 0.189853 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005023 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.60 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.964 seconds
+Platform modules already initialized, skipping
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.64 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3458 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 169.5 MB.
+System memory in use after: 169.7 MB.
+
+Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 4732.
+Total: 3.143300 ms (FindLiveObjects: 0.345400 ms CreateObjectMapping: 0.191800 ms MarkObjects: 2.551900 ms  DeleteObjects: 0.053500 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.006859 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.67 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.049 seconds
+Platform modules already initialized, skipping
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.85 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3458 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 169.5 MB.
+System memory in use after: 169.7 MB.
+
+Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 4738.
+Total: 4.793300 ms (FindLiveObjects: 0.944000 ms CreateObjectMapping: 0.377200 ms MarkObjects: 3.417200 ms  DeleteObjects: 0.053900 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 355.846104 seconds.
+  path: Assets/_Project/Resources/Prefabs/Hectopus.prefab
+  artifactKey: Guid(b36e5d53ecb583b41bd9b3098c816cab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Resources/Prefabs/Hectopus.prefab using Guid(b36e5d53ecb583b41bd9b3098c816cab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f043475ffa67cd884e1380dbb4c78af5') in 0.187512 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 72.041555 seconds.
+  path: Assets/_Project/Resources/Prefabs/Hectopus.prefab
+  artifactKey: Guid(b36e5d53ecb583b41bd9b3098c816cab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Resources/Prefabs/Hectopus.prefab using Guid(b36e5d53ecb583b41bd9b3098c816cab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd63efdba05fc7ac66c23dae32a61a8e6') in 0.012068 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 4.943106 seconds.
+  path: Assets/_Project/Resources/Prefabs/Hectopus.prefab
+  artifactKey: Guid(b36e5d53ecb583b41bd9b3098c816cab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Resources/Prefabs/Hectopus.prefab using Guid(b36e5d53ecb583b41bd9b3098c816cab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '32a13613dcaf8025c03fa49fd5bb7f87') in 0.009629 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005475 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.63 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.967 seconds
+Platform modules already initialized, skipping
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.74 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3458 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 169.6 MB.
+System memory in use after: 169.8 MB.
+
+Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 4780.
+Total: 3.987500 ms (FindLiveObjects: 0.332700 ms CreateObjectMapping: 0.188100 ms MarkObjects: 3.414000 ms  DeleteObjects: 0.051900 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.006019 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.80 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.211 seconds
+Platform modules already initialized, skipping
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 1.00 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3458 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 169.6 MB.
+System memory in use after: 169.8 MB.
+
+Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 4786.
+Total: 4.329400 ms (FindLiveObjects: 0.605300 ms CreateObjectMapping: 0.297700 ms MarkObjects: 3.379700 ms  DeleteObjects: 0.045400 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 46.183779 seconds.
+  path: Assets/_Project/Resources/Prefabs/Hectopus.prefab
+  artifactKey: Guid(b36e5d53ecb583b41bd9b3098c816cab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Resources/Prefabs/Hectopus.prefab using Guid(b36e5d53ecb583b41bd9b3098c816cab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '882c22cad570446dde97522d0a3201fa') in 0.186274 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 19.795163 seconds.
+  path: Assets/_Project/Resources/Prefabs/Hectopus.prefab
+  artifactKey: Guid(b36e5d53ecb583b41bd9b3098c816cab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Resources/Prefabs/Hectopus.prefab using Guid(b36e5d53ecb583b41bd9b3098c816cab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fa533f223c41d653f456f3a77906b58d') in 0.011534 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005554 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.59 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.970 seconds
+Platform modules already initialized, skipping
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.74 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3458 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 169.6 MB.
+System memory in use after: 169.9 MB.
+
+Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 4828.
+Total: 3.596400 ms (FindLiveObjects: 0.319600 ms CreateObjectMapping: 0.174300 ms MarkObjects: 3.067000 ms  DeleteObjects: 0.034800 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005157 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.77 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.052 seconds
+Platform modules already initialized, skipping
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.76 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3458 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 169.6 MB.
+System memory in use after: 169.9 MB.
+
+Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 4834.
+Total: 5.833300 ms (FindLiveObjects: 0.771100 ms CreateObjectMapping: 0.443500 ms MarkObjects: 4.573100 ms  DeleteObjects: 0.044500 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 67.614125 seconds.
+  path: Assets/_Project/Resources/Prefabs/Hectopus.prefab
+  artifactKey: Guid(b36e5d53ecb583b41bd9b3098c816cab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Resources/Prefabs/Hectopus.prefab using Guid(b36e5d53ecb583b41bd9b3098c816cab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e297acd774d59166cd5114b7db754cb2') in 0.184710 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 797.833949 seconds.
+  path: Assets/_Project/Resources/Sprites/Ennemies/HectopusAnimation.asset
+  artifactKey: Guid(4b1ed0caf1389db449b41a734941f9c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Resources/Sprites/Ennemies/HectopusAnimation.asset using Guid(4b1ed0caf1389db449b41a734941f9c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '80f1f7f9439ccb4167203f941575ad35') in 0.006781 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005214 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.60 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.949 seconds
+Platform modules already initialized, skipping
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.63 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3458 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 169.7 MB.
+System memory in use after: 169.9 MB.
+
+Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 4876.
+Total: 3.586200 ms (FindLiveObjects: 0.362600 ms CreateObjectMapping: 0.177600 ms MarkObjects: 2.887700 ms  DeleteObjects: 0.157300 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 2019.581235 seconds.
+  path: Assets/_Project/Resources/Sprites/Ennemies/SplitterfishAnimation.asset
+  artifactKey: Guid(ab2e24a266360f24f9968aa000441986) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Resources/Sprites/Ennemies/SplitterfishAnimation.asset using Guid(ab2e24a266360f24f9968aa000441986) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6e88405ec681a6c9fa6ec3d6ac514b20') in 0.041903 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 98.687931 seconds.
+  path: Assets/_Project/Resources/Sprites/Ennemies/SplitterfishAnimation.asset
+  artifactKey: Guid(ab2e24a266360f24f9968aa000441986) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Resources/Sprites/Ennemies/SplitterfishAnimation.asset using Guid(ab2e24a266360f24f9968aa000441986) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '16539127d5950d80c29cb5b553ddf231') in 0.003407 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 121.299461 seconds.
+  path: Assets/_Project/Resources/Sprites/Ennemies/_Splitterfish.png
+  artifactKey: Guid(2625ba1bb594d4d45bbb804209df0173) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Resources/Sprites/Ennemies/_Splitterfish.png using Guid(2625ba1bb594d4d45bbb804209df0173) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0e9174883501880c900987229e47a02b') in 0.069650 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 60.918455 seconds.
+  path: Assets/_Project/Resources/Sprites/Ennemies/_Splitterfish.png
+  artifactKey: Guid(2625ba1bb594d4d45bbb804209df0173) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Resources/Sprites/Ennemies/_Splitterfish.png using Guid(2625ba1bb594d4d45bbb804209df0173) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2b53fe96fc2eaabff1cbb63358128484') in 0.044269 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 80.879674 seconds.
+  path: Assets/_Project/Scripts/Enemies/Splitterfish.cs
+  artifactKey: Guid(c611eb390ac700148959d07af89cfe75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Scripts/Enemies/Splitterfish.cs using Guid(c611eb390ac700148959d07af89cfe75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6b05c4576a64a427ee2f56de1f5a725f') in 0.007953 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005290 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.61 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.991 seconds
+Platform modules already initialized, skipping
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.74 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3460 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 170.7 MB.
+System memory in use after: 171.0 MB.
+
+Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 4916.
+Total: 3.660100 ms (FindLiveObjects: 0.356400 ms CreateObjectMapping: 0.164500 ms MarkObjects: 3.062300 ms  DeleteObjects: 0.076000 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.004977 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.60 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.978 seconds
+Platform modules already initialized, skipping
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.64 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3459 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 170.7 MB.
+System memory in use after: 170.9 MB.
+
+Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 4922.
+Total: 3.783700 ms (FindLiveObjects: 0.354300 ms CreateObjectMapping: 0.153700 ms MarkObjects: 3.222000 ms  DeleteObjects: 0.053000 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 49.205724 seconds.
+  path: Assets/_Project/Scripts/Enemies/Splitterfish.cs
+  artifactKey: Guid(c611eb390ac700148959d07af89cfe75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Scripts/Enemies/Splitterfish.cs using Guid(c611eb390ac700148959d07af89cfe75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2c54d7366c5f2056e45fe7ed2d0776c5') in 0.006305 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 73.753638 seconds.
+  path: Assets/_Project/Resources/Prefabs/Splitterfish.prefab
+  artifactKey: Guid(36cdb8d95f9ba95419cfee174cc053e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Resources/Prefabs/Splitterfish.prefab using Guid(36cdb8d95f9ba95419cfee174cc053e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0cbc8c69cffedb032edc91dd8221b050') in 0.159156 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005273 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.76 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.011 seconds
+Platform modules already initialized, skipping
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.79 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3459 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 170.8 MB.
+System memory in use after: 171.1 MB.
+
+Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 4964.
+Total: 4.135100 ms (FindLiveObjects: 0.564200 ms CreateObjectMapping: 0.185700 ms MarkObjects: 3.338900 ms  DeleteObjects: 0.045300 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.007485 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.00 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.302 seconds
+Platform modules already initialized, skipping
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.76 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3459 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 170.8 MB.
+System memory in use after: 171.1 MB.
+
+Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 4970.
+Total: 5.649000 ms (FindLiveObjects: 0.600300 ms CreateObjectMapping: 0.330900 ms MarkObjects: 4.659200 ms  DeleteObjects: 0.057600 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 109.255263 seconds.
+  path: Assets/_Project/Resources/Prefabs/Splitterfish.prefab
+  artifactKey: Guid(36cdb8d95f9ba95419cfee174cc053e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Resources/Prefabs/Splitterfish.prefab using Guid(36cdb8d95f9ba95419cfee174cc053e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b71e5a50b75e910bfd240e505940980c') in 0.205469 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 5.062384 seconds.
+  path: Assets/_Project/Resources/Prefabs/Splitterfish.prefab
+  artifactKey: Guid(36cdb8d95f9ba95419cfee174cc053e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Resources/Prefabs/Splitterfish.prefab using Guid(36cdb8d95f9ba95419cfee174cc053e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7d9e167d07fbb30bc9baeead1ab705db') in 0.009246 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 24.782546 seconds.
+  path: Assets/_Project/Resources/Prefabs/Splitterfish.prefab
+  artifactKey: Guid(36cdb8d95f9ba95419cfee174cc053e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Resources/Prefabs/Splitterfish.prefab using Guid(36cdb8d95f9ba95419cfee174cc053e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '100e1e32a82a9e6663245ff93eb4ad3b') in 0.008724 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 46.975123 seconds.
+  path: Assets/_Project/Resources/Prefabs/Splitterfish.prefab
+  artifactKey: Guid(36cdb8d95f9ba95419cfee174cc053e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Resources/Prefabs/Splitterfish.prefab using Guid(36cdb8d95f9ba95419cfee174cc053e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'de378b03c6c941a4f4c745b3c63937a0') in 0.009745 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 64.000418 seconds.
+  path: Assets/_Project/Resources/Prefabs/Splitterfish.prefab
+  artifactKey: Guid(36cdb8d95f9ba95419cfee174cc053e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Resources/Prefabs/Splitterfish.prefab using Guid(36cdb8d95f9ba95419cfee174cc053e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9f1851f42942b92c50cdb30e416e9431') in 0.009062 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 11.485619 seconds.
+  path: Assets/_Project/Resources/Prefabs/Splitterfish.prefab
+  artifactKey: Guid(36cdb8d95f9ba95419cfee174cc053e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Resources/Prefabs/Splitterfish.prefab using Guid(36cdb8d95f9ba95419cfee174cc053e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '132132d49fe149ac9c44b359a0971519') in 0.009870 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 9.476462 seconds.
+  path: Assets/_Project/Resources/Prefabs/Splitterfish.prefab
+  artifactKey: Guid(36cdb8d95f9ba95419cfee174cc053e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Resources/Prefabs/Splitterfish.prefab using Guid(36cdb8d95f9ba95419cfee174cc053e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'edadd531a453c8aaa2c4b8d7cdbab914') in 0.010976 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 22.971837 seconds.
+  path: Assets/_Project/Resources/Prefabs/Splitterfish.prefab
+  artifactKey: Guid(36cdb8d95f9ba95419cfee174cc053e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Resources/Prefabs/Splitterfish.prefab using Guid(36cdb8d95f9ba95419cfee174cc053e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fca50ff2b01177fb6bc56f9a8b4162d8') in 0.009906 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 51.624105 seconds.
+  path: Assets/_Project/Resources/Prefabs/Splitterfish.prefab
+  artifactKey: Guid(36cdb8d95f9ba95419cfee174cc053e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Resources/Prefabs/Splitterfish.prefab using Guid(36cdb8d95f9ba95419cfee174cc053e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4ef9a70e5df6dc90afdd1dba4a96efad') in 0.009328 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 9.089257 seconds.
+  path: Assets/_Project/Resources/Prefabs/Splitterfish.prefab
+  artifactKey: Guid(36cdb8d95f9ba95419cfee174cc053e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Resources/Prefabs/Splitterfish.prefab using Guid(36cdb8d95f9ba95419cfee174cc053e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c11e15b84d8713f1aea36bf1e1335276') in 0.008953 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 2.406132 seconds.
+  path: Assets/_Project/Resources/Prefabs/Splitterfish.prefab
+  artifactKey: Guid(36cdb8d95f9ba95419cfee174cc053e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Resources/Prefabs/Splitterfish.prefab using Guid(36cdb8d95f9ba95419cfee174cc053e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f59b71f56bf68eb1405f7ad497f79aa3') in 0.008592 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 28.842991 seconds.
+  path: Assets/_Project/Resources/Prefabs/Splitterfish.prefab
+  artifactKey: Guid(36cdb8d95f9ba95419cfee174cc053e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Resources/Prefabs/Splitterfish.prefab using Guid(36cdb8d95f9ba95419cfee174cc053e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd7ef818ceb1926cac866ebb153b477c0') in 0.009556 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 56.418068 seconds.
+  path: Assets/_Project/Resources/Prefabs/Splitterfish.prefab
+  artifactKey: Guid(36cdb8d95f9ba95419cfee174cc053e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Resources/Prefabs/Splitterfish.prefab using Guid(36cdb8d95f9ba95419cfee174cc053e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '34e2d02b2bd5b054fc2295ce65586c16') in 0.009088 seconds 
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
